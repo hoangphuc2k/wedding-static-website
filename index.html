@@ -57,6 +57,28 @@
       text-align: center;
     }
 
+    @keyframes header-bg {
+      0% {
+        background: url('./images/ART07528.JPG') center/cover;
+      }
+
+      30% {
+        background: url('./images/ART07164.JPG') center/cover;
+      }
+
+      60% {
+        background: url('./images/ART07880.JPG') center/cover;
+      }
+
+      90% {
+        background: url('./images/ART08065.JPG') center/cover;
+      }
+
+      100% {
+        background: url('./images/ART07336.JPG') center/cover;
+      }
+    }
+
     .header {
       height: 100vh;
       display: flex;
@@ -64,9 +86,12 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      background: url('./images/ART07528.JPG') center/cover;
       position: relative;
       color: var(--light-color);
+      -webkit-animation: header-bg 20s infinite;
+      animation: header-bg 10s infinite;
+      -webkit-animation-direction: alternate;
+      animation-direction: alternate;
     }
 
     .header::before {
@@ -926,7 +951,8 @@
           <div class="timeline-content">
             <span class="timeline-date">04/2023</span>
             <h3 class="timeline-title">Chuyến Du Lịch Đầu Tiên</h3>
-            <p>Kỷ niệm chuyến du lịch đầu tiên cùng nhau tại Bình Hưng, nơi chúng tôi chia sẻ những khoảnh khắc đáng nhớ.
+            <p>Kỷ niệm chuyến du lịch đầu tiên cùng nhau tại Bình Hưng, nơi chúng tôi chia sẻ những khoảnh khắc đáng
+              nhớ.
             </p>
             <div class="timeline-image">
               <img src="./images/first-trip.jpeg" alt="Du lịch Đà Lạt">
