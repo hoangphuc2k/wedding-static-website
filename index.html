@@ -79,6 +79,28 @@
       }
     }
 
+    @keyframes header-mobile-bg {
+      0% {
+        background: url('./images/ART07196.JPG') center/cover;
+      }
+
+      30% {
+        background: url('./images/ART07443.JPG') center/cover;
+      }
+
+      60% {
+        background: url('./images/ART07461.JPG') center/cover;
+      }
+
+      90% {
+        background: url('./images/ART07464.JPG') center/cover;
+      }
+
+      100% {
+        background: url('./images/ART07574.JPG') center/cover;
+      }
+    }
+
     .header {
       height: 100vh;
       display: flex;
@@ -88,10 +110,14 @@
       text-align: center;
       position: relative;
       color: var(--light-color);
-      -webkit-animation: header-bg 20s infinite;
+      /* -webkit-animation: header-bg 20s infinite;
       animation: header-bg 10s infinite;
       -webkit-animation-direction: alternate;
-      animation-direction: alternate;
+      animation-direction: alternate; */
+      background: url('./images/lt-header.jpeg');
+      background-position: center;
+      background-repeat: no-repeat;
+  background-size: cover;
     }
 
     .header::before {
@@ -654,6 +680,11 @@
 
     /* Responsive Design */
     @media screen and (max-width: 992px) {
+      /* .header {
+        -webkit-animation: header-mobile-bg 20s infinite;
+        animation: header-mobile-bg 10s infinite;
+      } */
+
       .couple-name {
         font-size: 3.5rem;
       }
