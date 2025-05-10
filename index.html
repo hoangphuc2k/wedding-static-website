@@ -10,6 +10,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&family=Quicksand:wght@300;400;500;700&display=swap"
     rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
     :root {
       --primary-color: #ff9fd7;
@@ -63,7 +64,7 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      background: url('https://images.unsplash.com/photo-1490750967868-88aa4486c946') center/cover;
+      background: url('./images/ART07528.JPG') center/cover;
       position: relative;
       color: var(--light-color);
     }
@@ -149,7 +150,7 @@
 
     .section-container {
       position: relative;
-      background-color: rgba(255, 255, 255, 0.9);
+      background-color: #ffffff00;
       border-radius: var(--border-radius);
       padding: 40px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
@@ -164,7 +165,6 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: url('https://images.unsplash.com/photo-1490750967868-88aa4486c946') center/cover fixed;
       opacity: 0.1;
       z-index: -1;
     }
@@ -183,7 +183,7 @@
     /* Couple Section */
     .couple-section {
       text-align: center;
-      background: url('https://images.unsplash.com/photo-1554629947-334ff61d85dc') center/cover fixed;
+      background: url('./images/ART08065.JPG') center/cover fixed;
       position: relative;
       padding: 80px 0;
     }
@@ -355,52 +355,129 @@
       padding: 60px 0;
     }
 
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 40px;
+    /* Timeline image */
+    .timeline-image {
+      margin-top: 15px;
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .gallery-item {
-      position: relative;
-      height: 250px;
-      overflow: hidden;
-      border-radius: var(--border-radius);
-      cursor: pointer;
+    .timeline-image img {
+      width: 100%;
+      display: block;
       transition: transform 0.3s ease;
     }
 
-    .gallery-item:hover {
-      transform: scale(1.03);
+    .timeline-image:hover img {
+      transform: scale(1.05);
     }
 
-    .gallery-img {
+    /* Slideshow */
+    .slideshow-container {
+      position: relative;
+      max-width: 1000px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: var(--border-radius);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .slideshow-slides {
+      position: relative;
+      height: 600px;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      display: none;
+    }
+
+    .slide.active {
+      opacity: 1;
+      display: block;
+    }
+
+    .slide-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
     }
 
-    .gallery-item:hover .gallery-img {
-      transform: scale(1.1);
-    }
-
-    .gallery-caption {
+    .slide-caption {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      padding: 15px;
+      padding: 20px;
       background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
       color: white;
-      font-size: 0.9rem;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      font-size: 1.1rem;
+      text-align: center;
     }
 
-    .gallery-item:hover .gallery-caption {
-      opacity: 1;
+    .prev,
+    .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 15px;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      background-color: rgba(0, 0, 0, 0.3);
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      z-index: 1;
+    }
+
+    .prev {
+      left: 15px;
+    }
+
+    .next {
+      right: 15px;
+    }
+
+    .prev:hover,
+    .next:hover {
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .dots {
+      text-align: center;
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+      z-index: 1;
+    }
+
+    .dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      margin: 0 5px;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .dot.active,
+    .dot:hover {
+      background-color: rgba(255, 255, 255, 1);
     }
 
     /* Video Section */
@@ -439,7 +516,7 @@
     .thank-you {
       text-align: center;
       padding: 80px 0;
-      background: url('https://images.unsplash.com/photo-1490750967868-88aa4486c946') center/cover fixed;
+      background: url('./images/ART07986.JPG') center/cover fixed;
       position: relative;
       color: var(--light-color);
     }
@@ -772,7 +849,7 @@
     <div class="container">
       <div class="section-container fade-in">
         <h2 class="section-title">Cặp Đôi Hạnh Phúc</h2>
-        <img src="/api/placeholder/600/600" alt="Cặp đôi" class="couple-img">
+        <img src="./images/ART07472.JPG" alt="Cặp đôi" class="couple-img">
         <div class="couple-info">
           <p>Chúng tôi vô cùng hạnh phúc thông báo lễ thành hôn của chúng tôi và trân trọng kính mời quý vị đến tham dự
             buổi lễ. Sự hiện diện của quý vị là niềm vinh hạnh cho gia đình chúng tôi.</p>
@@ -785,26 +862,51 @@
   <section class="event-details" id="events">
     <div class="container">
       <h2 class="section-title">Sự Kiện Cưới</h2>
+      <h3 class="section-title">Ngày 07 tháng 11, 2025</h3>
       <div class="row">
         <div class="event-card fade-in">
-          <h3 class="event-title">Lễ Vu Quy</h3>
-          <p class="event-date">07 tháng 11, 2025 - 8:00 sáng</p>
-          <p class="event-location">Tư gia nhà gái: [Địa chỉ tư gia/lễ vu quy]</p>
+          <h3 class="event-title">Lễ Nhà Thờ</h3>
+          <p class="event-date">15:00</p>
+          <p class="event-location">Nhà thờ Vĩnh Hội</p>
           <div class="event-description">
-            <p>Lễ đón dâu sẽ diễn ra tại tư gia nhà gái theo nghi thức truyền thống.</p>
+            <p>Thánh lễ hôn phối sẽ được cử hành tại nhà thờ Vĩnh Hội. Kính mời quý vị đến tham dự và chứng kiến giây
+              phút thiêng liêng của chúng tôi.</p>
           </div>
-          <img src="/api/placeholder/800/400" alt="Bản đồ" class="event-map">
+          <!-- <img src="/api/placeholder/800/400" alt="Bản đồ nhà thờ" class="event-map"> -->
         </div>
 
         <div class="event-card fade-in">
           <h3 class="event-title">Tiệc Cưới</h3>
-          <p class="event-date">08 tháng 11, 2025 - 18:00 tối</p>
-          <p class="event-location">[Địa chỉ nơi tổ chức tiệc cưới]</p>
+          <p class="event-date">18:00</p>
+          <p class="event-location">Diamond Place - Hồ Văn Huê</p>
           <div class="event-description">
-            <p>Tiệc cưới sẽ được tổ chức trong không gian sang trọng và ấm cúng. Sự hiện diện của quý vị là niềm vinh
-              hạnh của chúng tôi.</p>
+            <p>Tiệc cưới sẽ được tổ chức trong không gian sang trọng và ấm cúng tại Diamond Place. Sự hiện diện của quý
+              vị là niềm vinh hạnh của chúng tôi.</p>
           </div>
-          <img src="/api/placeholder/800/400" alt="Bản đồ" class="event-map">
+          <!-- <img src="/api/placeholder/800/400" alt="Bản đồ tiệc cưới" class="event-map"> -->
+        </div>
+      </div>
+
+      <h3 class="section-title">Ngày 08 tháng 11, 2025</h3>
+      <div class="row">
+        <div class="event-card fade-in">
+          <h3 class="event-title">Lễ Vu Quy</h3>
+          <p class="event-date">09:00</p>
+          <p class="event-location">Tư gia nhà gái</p>
+          <div class="event-description">
+            <p>Lễ đón dâu sẽ diễn ra tại tư gia nhà gái theo nghi thức truyền thống.</p>
+          </div>
+          <!-- <img src="/api/placeholder/800/400" alt="Bản đồ nhà gái" class="event-map"> -->
+        </div>
+
+        <div class="event-card fade-in">
+          <h3 class="event-title">Lễ Tân Hôn</h3>
+          <p class="event-date">11:00</p>
+          <p class="event-location">Tư gia nhà trai - Cần Giuộc, Long An</p>
+          <div class="event-description">
+            <p>Lễ tân hôn sẽ diễn ra tại tư gia nhà trai ở Cần Giuộc, Long An theo nghi thức truyền thống.</p>
+          </div>
+          <!-- <img src="/api/placeholder/800/400" alt="Bản đồ nhà trai" class="event-map"> -->
         </div>
       </div>
     </div>
@@ -817,37 +919,49 @@
       <div class="timeline">
         <div class="timeline-item fade-in">
           <div class="timeline-content">
-            <span class="timeline-date">08/2019</span>
+            <span class="timeline-date">12/2022</span>
             <h3 class="timeline-title">Lần Đầu Gặp Gỡ</h3>
-            <p>Chúng tôi gặp nhau lần đầu tại một buổi họp mặt bạn bè chung. Đó là khoảnh khắc không thể quên.</p>
+            <p>Chúng tôi hẹn nhau lần đầu. Đó là khoảnh khắc không thể quên.</p>
+            <div class="timeline-image">
+              <img src="./images/first-day.jpeg" alt="Lần đầu gặp gỡ">
+            </div>
           </div>
           <span class="timeline-dot"></span>
         </div>
 
         <div class="timeline-item fade-in">
           <div class="timeline-content">
-            <span class="timeline-date">02/2020</span>
+            <span class="timeline-date">02/2023</span>
             <h3 class="timeline-title">Bắt Đầu Hẹn Hò</h3>
             <p>Sau nhiều lần gặp gỡ và trò chuyện, chúng tôi quyết định bắt đầu mối quan hệ tình cảm.</p>
+            <div class="timeline-image">
+              <img src="./images/start.jpeg" alt="Bắt đầu hẹn hò">
+            </div>
           </div>
           <span class="timeline-dot"></span>
         </div>
 
         <div class="timeline-item fade-in">
           <div class="timeline-content">
-            <span class="timeline-date">12/2021</span>
+            <span class="timeline-date">04/2023</span>
             <h3 class="timeline-title">Chuyến Du Lịch Đầu Tiên</h3>
-            <p>Kỷ niệm chuyến du lịch đầu tiên cùng nhau tại Đà Lạt, nơi chúng tôi chia sẻ những khoảnh khắc đáng nhớ.
+            <p>Kỷ niệm chuyến du lịch đầu tiên cùng nhau tại Bình Hưng, nơi chúng tôi chia sẻ những khoảnh khắc đáng nhớ.
             </p>
+            <div class="timeline-image">
+              <img src="./images/first-trip.jpeg" alt="Du lịch Đà Lạt">
+            </div>
           </div>
           <span class="timeline-dot"></span>
         </div>
 
         <div class="timeline-item fade-in">
           <div class="timeline-content">
-            <span class="timeline-date">06/2023</span>
+            <span class="timeline-date">12/2024</span>
             <h3 class="timeline-title">Lời Cầu Hôn</h3>
             <p>Dưới ánh hoàng hôn tuyệt đẹp, chúng tôi đã trao nhau lời hứa gắn bó trọn đời.</p>
+            <div class="timeline-image">
+              <img src="./images/ring-ring.jpeg" alt="Lời cầu hôn">
+            </div>
           </div>
           <span class="timeline-dot"></span>
         </div>
@@ -857,6 +971,9 @@
             <span class="timeline-date">11/2025</span>
             <h3 class="timeline-title">Ngày Trọng Đại</h3>
             <p>Chúng tôi chính thức về chung một nhà và bắt đầu hành trình mới cùng nhau.</p>
+            <div class="timeline-image">
+              <img src="./images/ART07218.JPG" alt="Ngày cưới">
+            </div>
           </div>
           <span class="timeline-dot"></span>
         </div>
@@ -868,30 +985,42 @@
   <section class="gallery" id="gallery">
     <div class="container">
       <h2 class="section-title">Album Hình Cưới</h2>
-      <div class="gallery-grid">
-        <div class="gallery-item fade-in">
-          <img src="/api/placeholder/600/600" alt="Ảnh cưới 1" class="gallery-img">
-          <div class="gallery-caption">Khoảnh khắc hạnh phúc</div>
+      <div class="slideshow-container fade-in">
+        <div class="slideshow-slides">
+          <div class="slide active">
+            <img src="./images/ART07472.JPG" alt="Ảnh cưới 1" class="slide-img">
+            <div class="slide-caption">Khoảnh khắc hạnh phúc</div>
+          </div>
+          <div class="slide">
+            <img src="./images/ART08079.JPG" alt="Ảnh cưới 2" class="slide-img">
+            <div class="slide-caption">Ngày đáng nhớ</div>
+          </div>
+          <div class="slide">
+            <img src="./images/ART07880.JPG" alt="Ảnh cưới 3" class="slide-img">
+            <div class="slide-caption">Tình yêu vĩnh cửu</div>
+          </div>
+          <div class="slide">
+            <img src="./images/ART07528.JPG" alt="Ảnh cưới 4" class="slide-img">
+            <div class="slide-caption">Hạnh phúc bên nhau</div>
+          </div>
+          <div class="slide">
+            <img src="./images/ART08009.JPG" alt="Ảnh cưới 5" class="slide-img">
+            <div class="slide-caption">Yêu thương trọn vẹn</div>
+          </div>
+          <div class="slide">
+            <img src="./images/ART07164.JPG" alt="Ảnh cưới 6" class="slide-img">
+            <div class="slide-caption">Giây phút ngọt ngào</div>
+          </div>
         </div>
-        <div class="gallery-item fade-in">
-          <img src="/api/placeholder/600/600" alt="Ảnh cưới 2" class="gallery-img">
-          <div class="gallery-caption">Ngày đáng nhớ</div>
-        </div>
-        <div class="gallery-item fade-in">
-          <img src="/api/placeholder/600/600" alt="Ảnh cưới 3" class="gallery-img">
-          <div class="gallery-caption">Tình yêu vĩnh cửu</div>
-        </div>
-        <div class="gallery-item fade-in">
-          <img src="/api/placeholder/600/600" alt="Ảnh cưới 4" class="gallery-img">
-          <div class="gallery-caption">Hạnh phúc bên nhau</div>
-        </div>
-        <div class="gallery-item fade-in">
-          <img src="/api/placeholder/600/600" alt="Ảnh cưới 5" class="gallery-img">
-          <div class="gallery-caption">Yêu thương trọn vẹn</div>
-        </div>
-        <div class="gallery-item fade-in">
-          <img src="/api/placeholder/600/600" alt="Ảnh cưới 6" class="gallery-img">
-          <div class="gallery-caption">Giây phút ngọt ngào</div>
+        <a class="prev" onclick="changeSlide(-1)">❮</a>
+        <a class="next" onclick="changeSlide(1)">❯</a>
+        <div class="dots">
+          <span class="dot active" onclick="currentSlide(1)"></span>
+          <span class="dot" onclick="currentSlide(2)"></span>
+          <span class="dot" onclick="currentSlide(3)"></span>
+          <span class="dot" onclick="currentSlide(4)"></span>
+          <span class="dot" onclick="currentSlide(5)"></span>
+          <span class="dot" onclick="currentSlide(6)"></span>
         </div>
       </div>
     </div>
@@ -931,7 +1060,7 @@
       <p class="footer-date">07 & 08 tháng 11, 2025</p>
       <p>Mong được đón tiếp quý vị trong ngày vui của chúng tôi</p>
       <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></i></a>
         <a href="#"><i class="fab fa-instagram"></i></a>
         <a href="#"><i class="fab fa-twitter"></i></a>
       </div>
@@ -945,103 +1074,158 @@
       <img src="" alt="Ảnh phóng to" class="modal-img" id="modalImg">
     </div>
   </div>
+</body>
 
-  <!-- Scripts -->
-  <script>
-    // Fade in animation for scrolling elements
-    document.addEventListener('DOMContentLoaded', function () {
-      // Initial check for elements in viewport
-      checkFadeElements();
+<!-- Scripts -->
+<script>
+  // Fade in animation for scrolling elements
+  document.addEventListener('DOMContentLoaded', function () {
+    // Initial check for elements in viewport
+    checkFadeElements();
 
-      // Check elements on scroll
-      window.addEventListener('scroll', checkFadeElements);
+    // Check elements on scroll
+    window.addEventListener('scroll', checkFadeElements);
 
-      function checkFadeElements() {
-        const fadeElements = document.querySelectorAll('.fade-in');
+    function checkFadeElements() {
+      const fadeElements = document.querySelectorAll('.fade-in');
 
-        fadeElements.forEach(element => {
-          const elementTop = element.getBoundingClientRect().top;
-          const elementVisible = 150;
+      fadeElements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
 
-          if (elementTop < window.innerHeight - elementVisible) {
-            element.classList.add('active');
-          }
-        });
-      }
-
-      // Gallery modal functionality
-      const galleryItems = document.querySelectorAll('.gallery-item');
-      const modal = document.getElementById('imageModal');
-      const modalImg = document.getElementById('modalImg');
-      const closeModal = document.querySelector('.close-modal');
-
-      galleryItems.forEach(item => {
-        item.addEventListener('click', function () {
-          const imgSrc = this.querySelector('.gallery-img').src;
-          modalImg.src = imgSrc;
-          modal.classList.add('active');
-          document.body.style.overflow = 'hidden';
-        });
-      });
-
-      closeModal.addEventListener('click', function () {
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-      });
-
-      modal.addEventListener('click', function (e) {
-        if (e.target === modal) {
-          modal.classList.remove('active');
-          document.body.style.overflow = 'auto';
+        if (elementTop < window.innerHeight - elementVisible) {
+          element.classList.add('active');
         }
       });
+    }
 
-      // Countdown timer
-      const weddingDate = new Date('November 7, 2025 08:00:00').getTime();
+    // Fix timeline images on mobile
+    function adjustTimelineImages() {
+      if (window.innerWidth <= 992) {
+        document.querySelectorAll('.timeline-image').forEach(img => {
+          img.style.maxWidth = '100%';
+        });
+      }
+    }
 
-      function updateCountdown() {
-        const now = new Date().getTime();
-        const distance = weddingDate - now;
+    adjustTimelineImages();
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    // Slideshow functionality
+    let slideIndex = 1;
+    showSlide(slideIndex);
 
-        document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
-        document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
-        document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
-        document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+    window.changeSlide = function (n) {
+      showSlide(slideIndex += n);
+    }
 
-        if (distance < 0) {
-          clearInterval(countdownInterval);
-          document.getElementById('days').innerHTML = '00';
-          document.getElementById('hours').innerHTML = '00';
-          document.getElementById('minutes').innerHTML = '00';
-          document.getElementById('seconds').innerHTML = '00';
-        }
+    window.currentSlide = function (n) {
+      showSlide(slideIndex = n);
+    }
+
+    function showSlide(n) {
+      let slides = document.querySelectorAll('.slide');
+      let dots = document.querySelectorAll('.dot');
+
+      if (n > slides.length) {
+        slideIndex = 1;
       }
 
-      updateCountdown();
-      const countdownInterval = setInterval(updateCountdown, 1000);
+      if (n < 1) {
+        slideIndex = slides.length;
+      }
 
-      // Smooth scrolling for navigation links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-          e.preventDefault();
+      // Hide all slides
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].classList.remove('active');
+      }
 
-          const targetId = this.getAttribute('href');
-          const targetElement = document.querySelector(targetId);
+      // Deactivate all dots
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].classList.remove('active');
+      }
 
-          if (targetElement) {
-            window.scrollTo({
-              top: targetElement.offsetTop,
-              behavior: 'smooth'
-            });
-          }
-        });
+      // Show current slide and activate current dot
+      slides[slideIndex - 1].classList.add('active');
+      dots[slideIndex - 1].classList.add('active');
+    }
+
+    // Gallery modal functionality for slideshow
+    const slideImages = document.querySelectorAll('.slide-img');
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    const closeModal = document.querySelector('.close-modal');
+
+    slideImages.forEach(img => {
+      img.addEventListener('click', function () {
+        modalImg.src = this.src;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
       });
     });
-  </script>
+
+    closeModal.addEventListener('click', function () {
+      modal.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Auto slideshow
+    setInterval(function () {
+      changeSlide(1);
+    }, 5000);
+
+    // Countdown timer
+    const weddingDate = new Date('November 7, 2025 18:00:00').getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
+      document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
+      document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
+      document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+
+      if (distance < 0) {
+        clearInterval(countdownInterval);
+        document.getElementById('days').innerHTML = '00';
+        document.getElementById('hours').innerHTML = '00';
+        document.getElementById('minutes').innerHTML = '00';
+        document.getElementById('seconds').innerHTML = '00';
+      }
+    }
+
+    updateCountdown();
+    const countdownInterval = setInterval(updateCountdown, 1000);
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  });
+</script>
 
 </html>
