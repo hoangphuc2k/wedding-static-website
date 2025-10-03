@@ -1037,229 +1037,636 @@
       color: var(--dusty-rose);
     }
 
-    /* ==================== Elegant Dress Code Styles ==================== */
-    .dress-code-elegant {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-xl);
-      margin-top: var(--space-2xl);
-    }
-
-    .dress-code-card-elegant {
-      background: var(--ivory);
-      border-radius: var(--radius-xl);
-      padding: var(--space-xl);
-      text-align: center;
-      box-shadow: var(--shadow-elegant);
-      transition: var(--transition-elegant);
-      border: 1px solid rgba(212, 165, 165, 0.1);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .dress-code-card-elegant::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 3px;
+    /* ==================== Floating Music Button ==================== */
+    .music-button-elegant {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      width: 60px;
+      height: 60px;
       background: var(--gradient-romantic);
-      transition: left 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .dress-code-card-elegant:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-romantic);
-      border-color: var(--dusty-rose);
-    }
-
-    .dress-code-card-elegant:hover::before {
-      left: 0;
-    }
-
-    .dress-code-icon-elegant {
-      width: 80px;
-      height: 80px;
-      background: var(--gradient-romantic);
+      border: none;
       border-radius: var(--radius-full);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto var(--space-lg);
-      font-size: var(--font-3xl);
+      font-size: var(--font-xl);
       color: white;
-      box-shadow: var(--shadow-elegant);
-      position: relative;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: var(--shadow-romantic);
+      transition: var(--transition-elegant);
+      overflow: hidden;
     }
 
-    .dress-code-icon-elegant::after {
+    .music-button-elegant::before {
       content: '';
       position: absolute;
-      inset: 8px;
+      inset: 4px;
       border: 1px solid rgba(255, 255, 255, 0.3);
       border-radius: var(--radius-full);
       transition: var(--transition-elegant);
     }
 
-    .dress-code-card-elegant:hover .dress-code-icon-elegant {
-      transform: scale(1.05);
-    }
-
-    .dress-code-card-elegant:hover .dress-code-icon-elegant::after {
-      border-color: rgba(255, 255, 255, 0.5);
-    }
-
-    .dress-code-title-elegant {
-      font-family: 'Playfair Display', serif;
-      font-size: var(--font-xl);
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: var(--space-md);
-    }
-
-    .dress-code-description-elegant {
-      color: var(--text-secondary);
-      line-height: 1.7;
-      margin-bottom: var(--space-lg);
-      font-size: var(--font-base);
-    }
-
-    .dress-code-colors-elegant {
-      display: flex;
-      justify-content: center;
-      gap: var(--space-sm);
-      margin-top: var(--space-md);
-    }
-
-    .color-swatch-elegant {
-      width: 36px;
-      height: 36px;
-      border-radius: var(--radius-full);
-      border: 3px solid white;
-      box-shadow: var(--shadow-soft);
-      position: relative;
-      transition: var(--transition-elegant);
-      cursor: pointer;
-    }
-
-    .color-swatch-elegant::after {
-      content: attr(data-color);
+    .music-button-elegant::after {
+      content: '';
       position: absolute;
-      top: -45px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--charcoal);
-      color: white;
-      padding: var(--space-xs) var(--space-sm);
-      border-radius: var(--radius-sm);
-      font-size: var(--font-xs);
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
       opacity: 0;
       transition: var(--transition-elegant);
-      pointer-events: none;
-      white-space: nowrap;
-      z-index: 10;
     }
 
-    .color-swatch-elegant:hover {
-      transform: scale(1.15);
-      box-shadow: var(--shadow-elegant);
+    .music-button-elegant:hover {
+      transform: scale(1.1) translateY(-2px);
+      box-shadow: 0 25px 50px rgba(212, 165, 165, 0.25);
     }
 
-    .color-swatch-elegant:hover::after {
+    .music-button-elegant:hover::before {
+      border-color: rgba(255, 255, 255, 0.5);
+      inset: 6px;
+    }
+
+    .music-button-elegant:hover::after {
       opacity: 1;
     }
 
-    .dress-code-guidelines-elegant {
-      background: var(--gradient-soft);
-      padding: var(--space-2xl);
-      border-radius: var(--radius-xl);
-      margin-top: var(--space-3xl);
-      text-align: center;
-      position: relative;
+    .music-button-elegant:active {
+      transform: scale(0.95);
     }
 
-    .dress-code-guidelines-elegant::before {
+    .music-button-elegant i {
+      position: relative;
+      z-index: 2;
+      transition: var(--transition-elegant);
+    }
+
+    .music-button-elegant.playing i {
+      animation: musicPulse 1s ease-in-out infinite;
+    }
+
+    @keyframes musicPulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.15);
+      }
+    }
+
+    .music-button-elegant.paused i {
+      opacity: 0.7;
+    }
+
+    /* Ripple effect on click */
+    .music-button-elegant .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      width: 100%;
+      height: 100%;
+      animation: rippleEffect 0.6s ease-out;
+      pointer-events: none;
+    }
+
+    @keyframes rippleEffect {
+      from {
+        transform: scale(0);
+        opacity: 1;
+      }
+      to {
+        transform: scale(2.5);
+        opacity: 0;
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .music-button-elegant {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        left: 20px;
+        font-size: var(--font-lg);
+      }
+    }
+
+    /* ==================== Vietnamese Invitation Cards ==================== */
+    .invitation-cards-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-3xl);
+      margin-top: var(--space-2xl);
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .vietnamese-card {
+      background: white;
+      border-radius: var(--radius-xl);
+      padding: var(--space-3xl) var(--space-2xl);
+      box-shadow: var(--shadow-romantic);
+      border: 2px solid var(--dusty-rose);
+      position: relative;
+      transition: var(--transition-elegant);
+      overflow: hidden;
+    }
+
+    .vietnamese-card::before {
       content: '';
       position: absolute;
       top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
+      left: 0;
+      right: 0;
       height: 4px;
       background: var(--gradient-romantic);
-      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
     }
 
-    .guidelines-title-elegant {
-      font-family: 'Playfair Display', serif;
+    .vietnamese-card::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      border: 1px solid var(--dusty-rose);
+      border-radius: var(--radius-lg);
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .vietnamese-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 60px rgba(212, 165, 165, 0.2);
+      border-color: var(--sage-green);
+    }
+
+    .card-ornament-top,
+    .card-ornament-bottom {
+      text-align: center;
       color: var(--dusty-rose);
+      font-size: var(--font-2xl);
+      margin: var(--space-md) 0;
+    }
+
+    .card-ornament-top i,
+    .card-ornament-bottom i {
+      animation: heartBeat 2s ease-in-out infinite;
+    }
+
+    @keyframes heartBeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+      10%, 30% {
+        transform: scale(1.1);
+      }
+      20%, 40% {
+        transform: scale(1);
+      }
+    }
+
+    .card-header-vietnamese {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+      padding-bottom: var(--space-lg);
+      border-bottom: 1px solid rgba(212, 165, 165, 0.3);
+    }
+
+    .card-title-vietnamese {
+      font-family: 'Playfair Display', serif;
+      font-size: var(--font-3xl);
+      color: var(--dusty-rose);
+      margin-bottom: var(--space-xs);
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    .card-subtitle-vietnamese {
+      font-family: 'Montserrat', sans-serif;
+      font-size: var(--font-sm);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-weight: 300;
+    }
+
+    .card-body-vietnamese {
+      position: relative;
+      z-index: 2;
+    }
+
+    .family-section {
+      text-align: center;
+      margin-bottom: var(--space-xl);
+      padding: var(--space-lg);
+      background: var(--gradient-soft);
+      border-radius: var(--radius-md);
+    }
+
+    .family-title {
+      font-family: 'Playfair Display', serif;
       font-size: var(--font-xl);
-      margin-bottom: var(--space-lg);
+      font-weight: 700;
+      color: var(--sage-green);
+      margin-bottom: var(--space-md);
+      letter-spacing: 4px;
+    }
+
+    .family-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--font-lg);
+      color: var(--text-primary);
+      margin: var(--space-xs) 0;
+      font-weight: 500;
+    }
+
+    .invitation-text {
+      text-align: center;
+      margin: var(--space-xl) 0;
+      line-height: 2;
+    }
+
+    .invitation-text p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--font-lg);
+      color: var(--text-secondary);
+      margin: var(--space-xs) 0;
+    }
+
+    .guest-name {
+      font-family: 'Playfair Display', serif;
+      font-size: var(--font-2xl);
+      color: var(--dusty-rose);
       font-weight: 600;
+      font-style: italic;
+      margin: var(--space-md) 0 !important;
     }
 
-    .guidelines-grid-elegant {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--space-xl);
-      margin-top: var(--space-lg);
+    .couple-section {
+      text-align: center;
+      margin: var(--space-xl) 0;
+      padding: var(--space-lg);
+      background: rgba(156, 175, 136, 0.05);
+      border-radius: var(--radius-md);
     }
 
-    .guideline-item-elegant {
-      text-align: left;
+    .couple-line {
+      margin: var(--space-sm) 0;
     }
 
-    .guideline-header-elegant {
+    .couple-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: var(--font-sm);
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 500;
+    }
+
+    .couple-name-card {
+      font-family: 'Great Vibes', cursive;
+      font-size: var(--font-2xl);
+      color: var(--dusty-rose);
+      margin-left: var(--space-sm);
+    }
+
+    .couple-divider {
+      margin: var(--space-md) 0;
+    }
+
+    .event-details-card {
+      margin: var(--space-xl) 0;
+      padding: var(--space-lg);
+      background: white;
+      border: 1px solid rgba(212, 165, 165, 0.2);
+      border-radius: var(--radius-md);
+    }
+
+    .detail-line {
       display: flex;
       align-items: center;
-      margin-bottom: var(--space-sm);
-      font-weight: 600;
+      margin: var(--space-md) 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--font-base);
       color: var(--text-primary);
     }
 
-    .guideline-icon-elegant {
-      margin-right: var(--space-sm);
+    .detail-line i {
+      width: 30px;
+      color: var(--sage-green);
       font-size: var(--font-lg);
+      margin-right: var(--space-md);
     }
 
-    .guideline-text-elegant {
+    .blessing-text {
+      text-align: center;
+      margin-top: var(--space-xl);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(212, 165, 165, 0.3);
+    }
+
+    .blessing-text p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--font-base);
       color: var(--text-secondary);
-      line-height: 1.6;
-      font-size: var(--font-sm);
+      font-style: italic;
+      margin: var(--space-xs) 0;
+      line-height: 1.8;
     }
 
-    /* Responsive Design for Dress Code */
-    @media (max-width: 768px) {
-      .dress-code-elegant {
+    /* Responsive Design for Invitation Cards */
+    @media (max-width: 968px) {
+      .invitation-cards-container {
         grid-template-columns: 1fr;
-        gap: var(--space-lg);
+        gap: var(--space-2xl);
       }
 
-      .dress-code-card-elegant {
-        padding: var(--space-lg);
+      .vietnamese-card {
+        padding: var(--space-2xl) var(--space-lg);
       }
 
-      .dress-code-icon-elegant {
-        width: 70px;
-        height: 70px;
+      .card-title-vietnamese {
         font-size: var(--font-2xl);
       }
 
-      .dress-code-colors-elegant {
-        gap: var(--space-xs);
-      }
-
-      .color-swatch-elegant {
-        width: 30px;
-        height: 30px;
-      }
-
-      .guidelines-grid-elegant {
-        grid-template-columns: 1fr;
-        gap: var(--space-lg);
+      .couple-name-card {
+        font-size: var(--font-xl);
       }
     }
+
+    @media (max-width: 480px) {
+      .vietnamese-card {
+        padding: var(--space-xl) var(--space-md);
+      }
+
+      .card-title-vietnamese {
+        font-size: var(--font-xl);
+      }
+
+      .family-title {
+        font-size: var(--font-lg);
+      }
+
+      .guest-name {
+        font-size: var(--font-xl);
+      }
+
+      .couple-name-card {
+        display: block;
+        margin-left: 0;
+        margin-top: var(--space-xs);
+      }
+
+      .detail-line {
+        font-size: var(--font-sm);
+      }
+    }
+
+    /* ==================== Scroll to Top Button ==================== */
+    .scroll-to-top-elegant {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: var(--gradient-romantic);
+      border: none;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-xl);
+      color: white;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: var(--shadow-romantic);
+      transition: var(--transition-elegant);
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(100px);
+    }
+
+    .scroll-to-top-elegant.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .scroll-to-top-elegant::before {
+      content: '';
+      position: absolute;
+      inset: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: var(--radius-full);
+      transition: var(--transition-elegant);
+    }
+
+    .scroll-to-top-elegant::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+      opacity: 0;
+      transition: var(--transition-elegant);
+    }
+
+    .scroll-to-top-elegant:hover {
+      transform: scale(1.1) translateY(-2px);
+      box-shadow: 0 25px 50px rgba(212, 165, 165, 0.25);
+    }
+
+    .scroll-to-top-elegant:hover::before {
+      border-color: rgba(255, 255, 255, 0.5);
+      inset: 6px;
+    }
+
+    .scroll-to-top-elegant:hover::after {
+      opacity: 1;
+    }
+
+    .scroll-to-top-elegant:active {
+      transform: scale(0.95);
+    }
+
+    .scroll-to-top-elegant i {
+      position: relative;
+      z-index: 2;
+      animation: arrowBounce 2s ease-in-out infinite;
+    }
+
+    @keyframes arrowBounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    /* Responsive adjustments for scroll button */
+    @media (max-width: 768px) {
+      .scroll-to-top-elegant {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+        font-size: var(--font-lg);
+      }
+    }
+
+    /* ==================== RSVP Form Styles ==================== */
+    .rsvp-form-container {
+      max-width: 800px;
+      margin: var(--space-2xl) auto 0;
+    }
+
+    .rsvp-form-elegant {
+      background: white;
+      padding: var(--space-3xl);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-romantic);
+      border: 2px solid var(--dusty-rose);
+      position: relative;
+    }
+
+    .rsvp-form-elegant::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient-romantic);
+      border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: var(--font-sm);
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: var(--space-xs);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .form-input,
+    .form-textarea {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: var(--font-base);
+      padding: var(--space-md);
+      border: 2px solid rgba(212, 165, 165, 0.3);
+      border-radius: var(--radius-md);
+      background: var(--ivory);
+      color: var(--text-primary);
+      transition: var(--transition-elegant);
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      outline: none;
+      border-color: var(--dusty-rose);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(212, 165, 165, 0.1);
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-actions {
+      margin-top: var(--space-xl);
+      text-align: center;
+    }
+
+    .btn-submit {
+      min-width: 200px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      cursor: pointer;
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    .btn-icon {
+      transition: var(--transition-elegant);
+    }
+
+    .btn-submit:hover .btn-icon {
+      transform: translateX(5px);
+    }
+
+    .form-message {
+      margin-top: var(--space-lg);
+      padding: var(--space-md);
+      border-radius: var(--radius-md);
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      font-size: var(--font-sm);
+      font-weight: 500;
+      display: none;
+    }
+
+    .form-message.success {
+      display: block;
+      background: rgba(156, 175, 136, 0.1);
+      border: 2px solid var(--sage-green);
+      color: var(--sage-green);
+    }
+
+    .form-message.error {
+      display: block;
+      background: rgba(220, 20, 60, 0.1);
+      border: 2px solid #dc143c;
+      color: #dc143c;
+    }
+
+    /* Responsive Design for Form */
+    @media (max-width: 768px) {
+      .rsvp-form-elegant {
+        padding: var(--space-2xl) var(--space-lg);
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+      }
+
+      .btn-submit {
+        width: 100%;
+      }
+    }
+
   </style>
 </head>
 
@@ -1284,58 +1691,203 @@
     <div class="elegant-pattern"></div>
     
     <div class="hero-content">
-      <p class="invitation-header">Together with their families</p>
-      <h1 class="couple-names-elegant">Hoàng Phúc & Ngọc Ngân</h1>
+      <p class="invitation-header">Cùng với gia đình hai bên</p>
+      <h1 class="couple-names-elegant">Hoàng Phúc</h1>
+      <h1 class="couple-names-elegant">&</h1>
+      <h1 class="couple-names-elegant">Ngọc Ngân</h1>
       <p class="wedding-date-elegant">
-        <span class="date-ornament">07 & 08 November, 2025</span>
+        <span class="date-ornament">07 & 08 Tháng 11, 2025</span>
       </p>
-      
+
       <div class="countdown-elegant">
         <div class="countdown-box">
           <span class="countdown-number" id="days">00</span>
-          <span class="countdown-label">Days</span>
+          <span class="countdown-label">Ngày</span>
         </div>
         <div class="countdown-box">
           <span class="countdown-number" id="hours">00</span>
-          <span class="countdown-label">Hours</span>
+          <span class="countdown-label">Giờ</span>
         </div>
         <div class="countdown-box">
           <span class="countdown-number" id="minutes">00</span>
-          <span class="countdown-label">Minutes</span>
+          <span class="countdown-label">Phút</span>
         </div>
         <div class="countdown-box">
           <span class="countdown-number" id="seconds">00</span>
-          <span class="countdown-label">Seconds</span>
+          <span class="countdown-label">Giây</span>
         </div>
       </div>
-      
-      <a href="#events" class="btn-elegant">View Details</a>
+
+      <a href="#events" class="btn-elegant">Xem Chi Tiết</a>
     </div>
   </header>
+
+  <!-- Vietnamese Invitation Cards Section -->
+  <section class="elegant-section section-bg-blush" id="invitations">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-subtitle">Thiệp Mời Cưới</p>
+        <h2 class="section-title ornament">Thiệp Mời</h2>
+      </div>
+
+      <div class="invitation-cards-container">
+        <!-- Groom's Family Invitation -->
+        <div class="vietnamese-card fade-in-elegant">
+          <div class="card-ornament-top">
+            <i class="fas fa-heart"></i>
+          </div>
+
+          <div class="card-header-vietnamese">
+            <h3 class="card-title-vietnamese">Thiệp Mời Cưới</h3>
+            <p class="card-subtitle-vietnamese">Wedding Invitation</p>
+          </div>
+
+          <div class="card-body-vietnamese">
+            <div class="family-section">
+              <p class="family-title">NHÀ TRAI</p>
+              <p class="family-name">Ông: [Tên cha chú rể]</p>
+              <p class="family-name">Bà: [Tên mẹ chú rể]</p>
+            </div>
+
+            <div class="invitation-text">
+              <p>Trân trọng kính mời</p>
+              <p class="guest-name">[Quý khách]</p>
+              <p>đến dự buổi tiệc chung vui</p>
+              <p>cùng gia đình chúng tôi</p>
+            </div>
+
+            <div class="couple-section">
+              <div class="couple-line">
+                <span class="couple-label">Chú rể:</span>
+                <span class="couple-name-card">Hoàng Phúc</span>
+              </div>
+              <div class="couple-divider">
+                <i class="fas fa-heart" style="color: var(--dusty-rose); font-size: 0.8rem;"></i>
+              </div>
+              <div class="couple-line">
+                <span class="couple-label">Cô dâu:</span>
+                <span class="couple-name-card">Ngọc Ngân</span>
+              </div>
+            </div>
+
+            <div class="event-details-card">
+              <div class="detail-line">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Thứ Sáu, ngày 07 tháng 11 năm 2025</span>
+              </div>
+              <div class="detail-line">
+                <i class="fas fa-clock"></i>
+                <span>Thời gian: 18:00 giờ</span>
+              </div>
+              <div class="detail-line">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Địa điểm: Diamond Place - Hồ Văn Huê</span>
+              </div>
+            </div>
+
+            <div class="blessing-text">
+              <p>Sự hiện diện của quý khách</p>
+              <p>là niềm vinh hạnh cho gia đình chúng tôi</p>
+            </div>
+          </div>
+
+          <div class="card-ornament-bottom">
+            <i class="fas fa-heart"></i>
+          </div>
+        </div>
+
+        <!-- Bride's Family Invitation -->
+        <div class="vietnamese-card fade-in-elegant">
+          <div class="card-ornament-top">
+            <i class="fas fa-heart"></i>
+          </div>
+
+          <div class="card-header-vietnamese">
+            <h3 class="card-title-vietnamese">Thiệp Mời Cưới</h3>
+            <p class="card-subtitle-vietnamese">Wedding Invitation</p>
+          </div>
+
+          <div class="card-body-vietnamese">
+            <div class="family-section">
+              <p class="family-title">NHÀ GÁI</p>
+              <p class="family-name">Ông: [Tên cha cô dâu]</p>
+              <p class="family-name">Bà: [Tên mẹ cô dâu]</p>
+            </div>
+
+            <div class="invitation-text">
+              <p>Trân trọng kính mời</p>
+              <p class="guest-name">[Quý khách]</p>
+              <p>đến dự buổi lễ vu quy</p>
+              <p>cùng gia đình chúng tôi</p>
+            </div>
+
+            <div class="couple-section">
+              <div class="couple-line">
+                <span class="couple-label">Cô dâu:</span>
+                <span class="couple-name-card">Ngọc Ngân</span>
+              </div>
+              <div class="couple-divider">
+                <i class="fas fa-heart" style="color: var(--dusty-rose); font-size: 0.8rem;"></i>
+              </div>
+              <div class="couple-line">
+                <span class="couple-label">Chú rể:</span>
+                <span class="couple-name-card">Hoàng Phúc</span>
+              </div>
+            </div>
+
+            <div class="event-details-card">
+              <div class="detail-line">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Thứ Bảy, ngày 08 tháng 11 năm 2025</span>
+              </div>
+              <div class="detail-line">
+                <i class="fas fa-clock"></i>
+                <span>Thời gian: 09:00 giờ</span>
+              </div>
+              <div class="detail-line">
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Địa điểm: Tư gia nhà gái</span>
+              </div>
+            </div>
+
+            <div class="blessing-text">
+              <p>Sự hiện diện của quý khách</p>
+              <p>là niềm vinh hạnh cho gia đình chúng tôi</p>
+            </div>
+          </div>
+
+          <div class="card-ornament-bottom">
+            <i class="fas fa-heart"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Our Story Section -->
   <section class="elegant-section section-bg-cream" id="story">
     <div class="container">
       <div class="section-header">
-        <p class="section-subtitle">About Us</p>
-        <h2 class="section-title ornament">Our Love Story</h2>
+        <p class="section-subtitle">Về Chúng Tôi</p>
+        <h2 class="section-title ornament">Câu Chuyện Tình Yêu</h2>
       </div>
-      
+
       <div class="couple-elegant fade-in-elegant">
         <div class="couple-image-container">
-          <img src="./images/ART07472.JPG" alt="Hoàng Phúc and Ngọc Ngân" class="couple-image" loading="lazy">
+          <img src="./images/ART07472.JPG" alt="Hoàng Phúc và Ngọc Ngân" class="couple-image" loading="lazy">
         </div>
-        
+
         <div class="couple-story">
           <h3 class="couple-names-section">Hoàng Phúc <span class="flourish">♥</span> Ngọc Ngân</h3>
           <p class="couple-description">
-            Our love story began like a gentle whisper that grew into a beautiful symphony. 
-            Through seasons of laughter and dreams shared under starlit skies, 
-            we discovered that true love isn't just about finding the perfect person, 
-            but about seeing an imperfect person perfectly.
+            Câu chuyện tình yêu của chúng tôi bắt đầu như một lời thì thầm nhẹ nhàng
+            rồi lớn dần thành một bản giao hưởng tuyệt đẹp.
+            Qua những mùa cười đùa và những giấc mơ được chia sẻ dưới bầu trời đầy sao,
+            chúng tôi khám phá ra rằng tình yêu đích thực không chỉ là tìm được người hoàn hảo,
+            mà là nhìn thấy một người không hoàn hảo một cách trọn vẹn.
             <br><br>
-            We invite you to celebrate this beautiful beginning with us, 
-            as we promise to love, honor, and cherish each other for all the days of our lives.
+            Chúng tôi xin trân trọng kính mời quý khách đến chung vui trong ngày trọng đại này,
+            khi chúng tôi hứa sẽ yêu thương, tôn trọng và trân trọng nhau suốt những ngày tháng còn lại của cuộc đời.
           </p>
         </div>
       </div>
@@ -1346,31 +1898,31 @@
   <section class="elegant-section section-bg-blush" id="events">
     <div class="container">
       <div class="section-header">
-        <p class="section-subtitle">When & Where</p>
-        <h2 class="section-title ornament">Wedding Events</h2>
+        <p class="section-subtitle">Thời Gian & Địa Điểm</p>
+        <h2 class="section-title ornament">Sự Kiện Cưới</h2>
       </div>
-      
+
       <div class="events-elegant">
         <div class="event-card-elegant fade-in-elegant">
           <div class="event-header">
             <div class="event-icon-elegant">
               <i class="fas fa-church"></i>
             </div>
-            <h3 class="event-title">Church Ceremony</h3>
-            <p class="event-date-time">3:00 PM • November 7th, 2025</p>
+            <h3 class="event-title">Lễ Cưới Tại Nhà Thờ</h3>
+            <p class="event-date-time">3:00 Chiều • Ngày 7 Tháng 11, 2025</p>
           </div>
           <div class="event-body">
             <div class="event-detail">
               <i class="fas fa-map-marker-alt"></i>
-              <span>Vĩnh Hội Church</span>
+              <span>Nhà Thờ Vĩnh Hội</span>
             </div>
             <div class="event-detail">
               <i class="fas fa-clock"></i>
-              <span>Ceremony begins promptly at 3:00 PM</span>
+              <span>Lễ bắt đầu đúng 3:00 chiều</span>
             </div>
             <p class="event-description">
-              Join us for our sacred union in the beautiful Vĩnh Hội Church, 
-              where we will exchange vows in the presence of God, family, and friends.
+              Mời quý khách đến dự lễ kết hôn thiêng liêng tại Nhà Thờ Vĩnh Hội trang nghiêm,
+              nơi chúng tôi sẽ trao lời thề nguyền trước Chúa, gia đình và bạn bè.
             </p>
           </div>
         </div>
@@ -1380,8 +1932,8 @@
             <div class="event-icon-elegant">
               <i class="fas fa-glass-cheers"></i>
             </div>
-            <h3 class="event-title">Wedding Reception</h3>
-            <p class="event-date-time">6:00 PM • November 7th, 2025</p>
+            <h3 class="event-title">Tiệc Cưới</h3>
+            <p class="event-date-time">6:00 Tối • Ngày 7 Tháng 11, 2025</p>
           </div>
           <div class="event-body">
             <div class="event-detail">
@@ -1390,11 +1942,11 @@
             </div>
             <div class="event-detail">
               <i class="fas fa-utensils"></i>
-              <span>Dinner, Dancing & Celebration</span>
+              <span>Tiệc Tối, Khiêu Vũ & Ăn Mừng</span>
             </div>
             <p class="event-description">
-              Continue the celebration with us at Diamond Place for an evening of 
-              fine dining, dancing, and joy as we begin our new journey together.
+              Tiếp tục ăn mừng cùng chúng tôi tại Diamond Place với một buổi tối
+              đầy ắp bữa tiệc thịnh soạn, khiêu vũ và niềm vui khi bắt đầu hành trình mới.
             </p>
           </div>
         </div>
@@ -1404,21 +1956,21 @@
             <div class="event-icon-elegant">
               <i class="fas fa-home"></i>
             </div>
-            <h3 class="event-title">Vu Quy Ceremony</h3>
-            <p class="event-date-time">9:00 AM • November 8th, 2025</p>
+            <h3 class="event-title">Lễ Vu Quy</h3>
+            <p class="event-date-time">9:00 Sáng • Ngày 8 Tháng 11, 2025</p>
           </div>
           <div class="event-body">
             <div class="event-detail">
               <i class="fas fa-map-marker-alt"></i>
-              <span>Bride's Family Home</span>
+              <span>Tư Gia Nhà Gái</span>
             </div>
             <div class="event-detail">
               <i class="fas fa-heart"></i>
-              <span>Traditional Vietnamese Ceremony</span>
+              <span>Lễ Truyền Thống Việt Nam</span>
             </div>
             <p class="event-description">
-              A beautiful traditional ceremony honoring our families and cultural heritage, 
-              marking the bride's departure from her family home.
+              Một nghi lễ truyền thống trang trọng để tôn vinh gia đình và di sản văn hóa,
+              đánh dấu khoảnh khắc cô dâu rời khỏi tổ ấm của cha mẹ.
             </p>
           </div>
         </div>
@@ -1428,105 +1980,22 @@
             <div class="event-icon-elegant">
               <i class="fas fa-home"></i>
             </div>
-            <h3 class="event-title">Thanh Hon Ceremony</h3>
-            <p class="event-date-time">11:00 AM • November 8th, 2025</p>
+            <h3 class="event-title">Lễ Thành Hôn</h3>
+            <p class="event-date-time">11:00 Sáng • Ngày 8 Tháng 11, 2025</p>
           </div>
           <div class="event-body">
             <div class="event-detail">
               <i class="fas fa-map-marker-alt"></i>
-              <span>Groom's Family Home - Cần Giuộc, Long An</span>
+              <span>Tư Gia Nhà Trai - Cần Giuộc, Long An</span>
             </div>
             <div class="event-detail">
               <i class="fas fa-leaf"></i>
-              <span>Traditional Tea Service</span>
+              <span>Lễ Dâng Trà Truyền Thống</span>
             </div>
             <p class="event-description">
-              An intimate ceremony where we honor our elders and receive blessings 
-              for our marriage in the traditional Vietnamese way.
+              Một nghi lễ thân mật để chúng tôi tỏ lòng kính trọng đối với người lớn tuổi
+              và nhận lời chúc phúc cho cuộc hôn nhân theo truyền thống Việt Nam.
             </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Dress Code Section -->
-  <section class="elegant-section section-bg-blush" id="dress-code">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-subtitle">Attire Guide</p>
-        <h2 class="section-title ornament">Dress Code</h2>
-        <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto; font-size: var(--font-base);">
-          Join us in creating a beautiful celebration with appropriate attire for each special event across our two days of festivities.
-        </p>
-      </div>
-
-      <div class="dress-code-elegant">
-        <!-- Church Ceremony Dress Code -->
-        <div class="dress-code-card-elegant fade-in-elegant">
-          <div class="dress-code-icon-elegant">
-            <i class="fas fa-church"></i>
-          </div>
-          <h3 class="dress-code-title-elegant">Church Ceremony</h3>
-          <p class="dress-code-description-elegant">
-            Formal, conservative attire for our sacred ceremony. Gentlemen should wear suits or dress shirts with dress pants. Ladies should choose dresses or suits, avoiding short or strapless styles.
-          </p>
-          <div class="dress-code-colors-elegant">
-            <div class="color-swatch-elegant" style="background: #2c3e50;" data-color="Navy"></div>
-            <div class="color-swatch-elegant" style="background: #34495e;" data-color="Charcoal"></div>
-            <div class="color-swatch-elegant" style="background: #8b4513;" data-color="Brown"></div>
-            <div class="color-swatch-elegant" style="background: #556b2f;" data-color="Olive"></div>
-          </div>
-        </div>
-
-        <!-- Wedding Reception Dress Code -->
-        <div class="dress-code-card-elegant fade-in-elegant">
-          <div class="dress-code-icon-elegant">
-            <i class="fas fa-glass-cheers"></i>
-          </div>
-          <h3 class="dress-code-title-elegant">Wedding Reception</h3>
-          <p class="dress-code-description-elegant">
-            Cocktail attire for our elegant evening celebration. Gentlemen may wear suits or blazers. Ladies may choose cocktail dresses or sophisticated jumpsuits.
-          </p>
-          <div class="dress-code-colors-elegant">
-            <div class="color-swatch-elegant" style="background: #1a1a1a;" data-color="Black"></div>
-            <div class="color-swatch-elegant" style="background: #2c3e50;" data-color="Navy"></div>
-            <div class="color-swatch-elegant" style="background: #8b0000;" data-color="Burgundy"></div>
-            <div class="color-swatch-elegant" style="background: #d4a574;" data-color="Gold"></div>
-          </div>
-        </div>
-
-        <!-- Vietnamese Traditional Ceremony -->
-        <div class="dress-code-card-elegant fade-in-elegant">
-          <div class="dress-code-icon-elegant">
-            <i class="fas fa-home"></i>
-          </div>
-          <h3 class="dress-code-title-elegant">Vu Quy Ceremony</h3>
-          <p class="dress-code-description-elegant">
-            Traditional Vietnamese attire or formal wear in vibrant colors that symbolize luck and happiness in Vietnamese culture. Embrace the beauty of our heritage.
-          </p>
-          <div class="dress-code-colors-elegant">
-            <div class="color-swatch-elegant" style="background: #dc143c;" data-color="Red"></div>
-            <div class="color-swatch-elegant" style="background: #ff6b6b;" data-color="Pink"></div>
-            <div class="color-swatch-elegant" style="background: #ffd700;" data-color="Gold"></div>
-            <div class="color-swatch-elegant" style="background: #ff4500;" data-color="Orange"></div>
-          </div>
-        </div>
-
-        <!-- Tea Ceremony -->
-        <div class="dress-code-card-elegant fade-in-elegant">
-          <div class="dress-code-icon-elegant">
-            <i class="fas fa-home"></i>
-          </div>
-          <h3 class="dress-code-title-elegant">Thanh Hon Ceremony</h3>
-          <p class="dress-code-description-elegant">
-            Smart casual attire for our intimate family ceremony. Gentlemen may wear dress shirts without ties with khakis. Ladies may choose maxi dresses or elegant casual wear.
-          </p>
-          <div class="dress-code-colors-elegant">
-            <div class="color-swatch-elegant" style="background: #87ceeb;" data-color="Sky Blue"></div>
-            <div class="color-swatch-elegant" style="background: #f0e68c;" data-color="Khaki"></div>
-            <div class="color-swatch-elegant" style="background: #dda0dd;" data-color="Plum"></div>
-            <div class="color-swatch-elegant" style="background: #f5deb3;" data-color="Wheat"></div>
           </div>
         </div>
       </div>
@@ -1537,74 +2006,74 @@
   <section class="elegant-section section-bg-cream">
     <div class="container">
       <div class="section-header">
-        <p class="section-subtitle">Our Journey</p>
-        <h2 class="section-title ornament">Love Timeline</h2>
+        <p class="section-subtitle">Hành Trình Của Chúng Tôi</p>
+        <h2 class="section-title ornament">Dòng Thời Gian Tình Yêu</h2>
       </div>
-      
+
       <div class="timeline-elegant">
         <div class="timeline-line"></div>
-        
+
         <div class="timeline-item fade-in-elegant">
           <div class="timeline-content">
-            <div class="timeline-date">December 2022</div>
-            <h3 class="timeline-title">First Meeting</h3>
+            <div class="timeline-date">Tháng 12, 2022</div>
+            <h3 class="timeline-title">Lần Đầu Gặp Gỡ</h3>
             <p class="timeline-description">
-              A serendipitous encounter that would change our lives forever. 
-              Sometimes the most beautiful stories begin with a simple hello.
+              Một cuộc gặp gỡ định mệnh đã thay đổi cuộc đời chúng tôi mãi mãi.
+              Đôi khi những câu chuyện đẹp nhất bắt đầu từ một lời chào đơn giản.
             </p>
-            <img src="./images/first-day.jpeg" alt="First meeting" class="timeline-image" loading="lazy">
+            <img src="./images/first-day.jpeg" alt="Lần đầu gặp gỡ" class="timeline-image" loading="lazy">
           </div>
           <div class="timeline-dot"></div>
         </div>
 
         <div class="timeline-item fade-in-elegant">
           <div class="timeline-content">
-            <div class="timeline-date">February 2023</div>
-            <h3 class="timeline-title">First Date</h3>
+            <div class="timeline-date">Tháng 2, 2023</div>
+            <h3 class="timeline-title">Buổi Hẹn Đầu Tiên</h3>
             <p class="timeline-description">
-              Coffee turned into hours of conversation, and we knew we had found 
-              something special. The beginning of our beautiful love story.
+              Ly cà phê trở thành hàng giờ trò chuyện, và chúng tôi biết mình đã tìm thấy
+              điều gì đó đặc biệt. Khởi đầu của câu chuyện tình yêu tuyệt vời.
             </p>
-            <img src="./images/start.jpeg" alt="First date" class="timeline-image" loading="lazy">
+            <img src="./images/start.jpeg" alt="Buổi hẹn đầu tiên" class="timeline-image" loading="lazy">
           </div>
           <div class="timeline-dot"></div>
         </div>
 
         <div class="timeline-item fade-in-elegant">
           <div class="timeline-content">
-            <div class="timeline-date">April 2023</div>
-            <h3 class="timeline-title">First Adventure</h3>
+            <div class="timeline-date">Tháng 4, 2023</div>
+            <h3 class="timeline-title">Chuyến Đi Đầu Tiên</h3>
             <p class="timeline-description">
-              Our first trip together to Bình Hưng. Discovering new places hand in hand, 
-              creating memories that would last a lifetime.
+              Chuyến du lịch đầu tiên cùng nhau đến Bình Hưng. Khám phá những địa điểm mới tay trong tay,
+              tạo nên những kỷ niệm sẽ tồn tại mãi mãi.
             </p>
-            <img src="./images/first-trip.jpeg" alt="First trip" class="timeline-image" loading="lazy">
+            <img src="./images/first-trip.jpeg" alt="Chuyến đi đầu tiên" class="timeline-image" loading="lazy">
           </div>
           <div class="timeline-dot"></div>
         </div>
 
         <div class="timeline-item fade-in-elegant">
           <div class="timeline-content">
-            <div class="timeline-date">December 2024</div>
-            <h3 class="timeline-title">The Proposal</h3>
+            <div class="timeline-date">Tháng 12, 2024</div>
+            <h3 class="timeline-title">Lời Cầu Hôn</h3>
             <p class="timeline-description">
-              Under a golden sunset, with hearts full of love and hope for the future, 
-              the question was asked and joyfully answered with "Yes!"
+              Dưới hoàng hôn vàng rực, với trái tim tràn đầy tình yêu và hy vọng cho tương lai,
+              câu hỏi được đặt ra và được đáp lại vui mừng bằng "Có!"
             </p>
-            <img src="./images/ring-ring.jpeg" alt="Proposal" class="timeline-image" loading="lazy">
+            <img src="./images/ring-ring.jpeg" alt="Lời cầu hôn" class="timeline-image" loading="lazy">
           </div>
           <div class="timeline-dot"></div>
         </div>
 
         <div class="timeline-item fade-in-elegant">
           <div class="timeline-content">
-            <div class="timeline-date">November 2025</div>
-            <h3 class="timeline-title">Our Wedding Day</h3>
+            <div class="timeline-date">Tháng 11, 2025</div>
+            <h3 class="timeline-title">Ngày Cưới Của Chúng Tôi</h3>
             <p class="timeline-description">
-              The day we've dreamed of - surrounded by love, family, and friends 
-              as we promise to love each other for all eternity.
+              Ngày mà chúng tôi đã mơ ước - được bao quanh bởi tình yêu, gia đình và bạn bè
+              khi chúng tôi hứa sẽ yêu thương nhau đến mãi mãi.
             </p>
-            <img src="./images/ART07218.JPG" alt="Wedding day" class="timeline-image" loading="lazy">
+            <img src="./images/ART07218.JPG" alt="Ngày cưới" class="timeline-image" loading="lazy">
           </div>
           <div class="timeline-dot"></div>
         </div>
@@ -1616,53 +2085,53 @@
   <section class="gallery-elegant" id="gallery">
     <div class="container">
       <div class="section-header">
-        <p class="section-subtitle" style="color: var(--dusty-rose);">Captured Moments</p>
-        <h2 class="section-title" style="color: white;">Photo Gallery</h2>
+        <p class="section-subtitle" style="color: var(--dusty-rose);">Khoảnh Khắc Đáng Nhớ</p>
+        <h2 class="section-title" style="color: white;">Thư Viện Ảnh</h2>
       </div>
-      
+
       <div class="gallery-frame fade-in-elegant">
         <div class="gallery-slider">
           <div class="gallery-track" id="galleryTrack">
             <div class="gallery-slide">
-              <img src="./images/ART07472.JPG" alt="Beautiful moment 1" loading="lazy">
+              <img src="./images/ART07472.JPG" alt="Khoảnh khắc đẹp 1" loading="lazy">
               <div class="gallery-overlay">
-                <div class="gallery-caption">Perfect Moment</div>
-                <div class="gallery-text">Captured in time, forever in our hearts</div>
+                <div class="gallery-caption">Khoảnh Khắc Hoàn Hảo</div>
+                <div class="gallery-text">Đóng băng thời gian, mãi mãi trong trái tim</div>
               </div>
             </div>
             <div class="gallery-slide">
-              <img src="./images/ART08079.JPG" alt="Beautiful moment 2" loading="lazy">
+              <img src="./images/ART08079.JPG" alt="Khoảnh khắc đẹp 2" loading="lazy">
               <div class="gallery-overlay">
-                <div class="gallery-caption">Pure Joy</div>
-                <div class="gallery-text">Happiness radiating from within</div>
+                <div class="gallery-caption">Niềm Vui Thuần Khiết</div>
+                <div class="gallery-text">Hạnh phúc tỏa sáng từ bên trong</div>
               </div>
             </div>
             <div class="gallery-slide">
-              <img src="./images/ART07880.JPG" alt="Beautiful moment 3" loading="lazy">
+              <img src="./images/ART07880.JPG" alt="Khoảnh khắc đẹp 3" loading="lazy">
               <div class="gallery-overlay">
-                <div class="gallery-caption">Eternal Love</div>
-                <div class="gallery-text">A love that will last forever</div>
+                <div class="gallery-caption">Tình Yêu Vĩnh Cửu</div>
+                <div class="gallery-text">Một tình yêu sẽ tồn tại mãi mãi</div>
               </div>
             </div>
             <div class="gallery-slide">
-              <img src="./images/ART07528.JPG" alt="Beautiful moment 4" loading="lazy">
+              <img src="./images/ART07528.JPG" alt="Khoảnh khắc đẹp 4" loading="lazy">
               <div class="gallery-overlay">
-                <div class="gallery-caption">Together</div>
-                <div class="gallery-text">Side by side, heart to heart</div>
+                <div class="gallery-caption">Bên Nhau</div>
+                <div class="gallery-text">Vai kề vai, tim đối tim</div>
               </div>
             </div>
             <div class="gallery-slide">
-              <img src="./images/ART08009.JPG" alt="Beautiful moment 5" loading="lazy">
+              <img src="./images/ART08009.JPG" alt="Khoảnh khắc đẹp 5" loading="lazy">
               <div class="gallery-overlay">
-                <div class="gallery-caption">Timeless</div>
-                <div class="gallery-text">A moment frozen in eternity</div>
+                <div class="gallery-caption">Vô Tận</div>
+                <div class="gallery-text">Khoảnh khắc đóng băng trong vĩnh hằng</div>
               </div>
             </div>
             <div class="gallery-slide">
-              <img src="./images/ART07164.JPG" alt="Beautiful moment 6" loading="lazy">
+              <img src="./images/ART07164.JPG" alt="Khoảnh khắc đẹp 6" loading="lazy">
               <div class="gallery-overlay">
-                <div class="gallery-caption">Blissful</div>
-                <div class="gallery-text">Pure happiness shared together</div>
+                <div class="gallery-caption">Hạnh Phúc</div>
+                <div class="gallery-text">Niềm hạnh phúc thuần khiết được chia sẻ</div>
               </div>
             </div>
           </div>
@@ -1678,29 +2147,113 @@
     </div>
   </section>
 
+  <!-- RSVP Form Section -->
+  <section class="elegant-section section-bg-cream" id="rsvp">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-subtitle">Xác Nhận Tham Dự</p>
+        <h2 class="section-title ornament">RSVP</h2>
+        <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto; font-size: var(--font-base);">
+          Vui lòng cho chúng tôi biết quý khách có thể tham dự không để chúng tôi chuẩn bị chu đáo hơn.
+        </p>
+      </div>
+
+      <div class="rsvp-form-container fade-in-elegant">
+        <form id="rsvpForm" class="rsvp-form-elegant">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fullName" class="form-label">Họ và Tên *</label>
+              <input type="text" id="fullName" name="fullName" class="form-input" required placeholder="Nguyễn Văn A">
+            </div>
+
+            <div class="form-group">
+              <label for="phone" class="form-label">Số Điện Thoại *</label>
+              <input type="tel" id="phone" name="phone" class="form-input" required placeholder="0123456789">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" id="email" name="email" class="form-input" placeholder="email@example.com">
+            </div>
+
+            <div class="form-group">
+              <label for="guests" class="form-label">Số Lượng Khách *</label>
+              <input type="number" id="guests" name="guests" class="form-input" required min="1" max="10" value="1">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="attendance" class="form-label">Tham Dự Sự Kiện *</label>
+            <select id="attendance" name="attendance" class="form-input" required>
+              <option value="">-- Chọn sự kiện --</option>
+              <option value="church">Lễ Cưới Tại Nhà Thờ (7/11)</option>
+              <option value="reception">Tiệc Cưới (7/11)</option>
+              <option value="vuquy">Lễ Vu Quy (8/11)</option>
+              <option value="thanhhon">Lễ Thành Hôn (8/11)</option>
+              <option value="all">Tất Cả Sự Kiện</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message" class="form-label">Lời Chúc</label>
+            <textarea id="message" name="message" class="form-textarea" rows="4" placeholder="Gửi lời chúc đến cô dâu chú rể..."></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-elegant btn-submit" id="submitBtn">
+              <span class="btn-text">Gửi Xác Nhận</span>
+              <i class="fas fa-paper-plane btn-icon"></i>
+            </button>
+          </div>
+
+          <div id="formMessage" class="form-message"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+
   <!-- Thank You Section -->
   <section class="thank-you-elegant" id="thanks">
     <div class="thank-you-content fade-in-elegant">
-      <h2 class="thank-you-title">With Grateful Hearts</h2>
+      <h2 class="thank-you-title">Với Trái Tim Biết Ơn</h2>
       <p class="thank-you-message">
-        We are deeply touched by your love and support as we begin this new chapter together. 
-        Your presence at our wedding would be the greatest gift of all.
+        Chúng tôi vô cùng cảm động trước tình yêu thương và sự ủng hộ của quý khách
+        khi chúng tôi bắt đầu chương mới trong cuộc đời.
+        Sự hiện diện của quý khách tại đám cưới sẽ là món quà lớn nhất.
         <br><br>
-        Thank you for being part of our love story and for celebrating this 
-        joyous occasion with us. We look forward to sharing our special day with you.
+        Cảm ơn quý khách đã là một phần trong câu chuyện tình yêu của chúng tôi
+        và cùng chung vui trong dịp trọng đại này. Chúng tôi rất mong được chia sẻ
+        ngày đặc biệt này cùng quý khách.
       </p>
-      <p class="thank-you-signature">With all our love,<br>Hoàng Phúc & Ngọc Ngân</p>
+      <p class="thank-you-signature">Với tất cả tình yêu của chúng tôi,<br>Hoàng Phúc & Ngọc Ngân</p>
     </div>
   </section>
+
+  <!-- Floating Music Button -->
+  <button class="music-button-elegant" id="musicButton" aria-label="Toggle background music">
+    <i class="fas fa-music" id="musicIcon"></i>
+  </button>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top-elegant" id="scrollToTop" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Background Music Audio -->
+  <audio id="backgroundMusic" loop>
+    <source src="./audio/wedding-music.mp3" type="audio/mpeg">
+  </audio>
 
   <!-- Elegant Footer -->
   <footer class="footer-elegant">
     <div class="container">
       <h3 class="footer-names">Hoàng Phúc & Ngọc Ngân</h3>
-      <p class="footer-date">November 7th & 8th, 2025</p>
+      <p class="footer-date">Ngày 7 & 8 Tháng 11, 2025</p>
       <div class="footer-divider"></div>
       <p style="font-size: var(--font-sm); opacity: 0.6;">
-        "Love is not just looking at each other, it's looking in the same direction together."
+        "Tình yêu không chỉ là nhìn nhau, mà là cùng nhìn về một hướng."
       </p>
     </div>
   </footer>
@@ -1738,6 +2291,75 @@
 
     setInterval(updateCountdown, 1000);
     updateCountdown();
+
+    // ==================== RSVP Form Submission ====================
+    // IMPORTANT: Replace with your Google Apps Script Web App URL
+    const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL_HERE';
+
+    const rsvpForm = document.getElementById('rsvpForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const formMessage = document.getElementById('formMessage');
+
+    rsvpForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      // Disable submit button
+      submitBtn.disabled = true;
+      submitBtn.querySelector('.btn-text').textContent = 'Đang gửi...';
+
+      // Get form data
+      const formData = {
+        fullName: document.getElementById('fullName').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        guests: document.getElementById('guests').value,
+        attendance: document.getElementById('attendance').value,
+        message: document.getElementById('message').value,
+        timestamp: new Date().toISOString()
+      };
+
+      try {
+        // Check if URL is configured
+        if (GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_SCRIPT_URL_HERE') {
+          throw new Error('Vui lòng cấu hình Google Script URL trong mã nguồn');
+        }
+
+        // Submit to Google Sheets
+        const response = await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors', // Important for Google Apps Script
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+        });
+
+        // With no-cors mode, we assume success if no error is thrown
+        showMessage('success', 'Cảm ơn bạn đã xác nhận tham dự! Chúng tôi rất mong được gặp bạn. 💕');
+        rsvpForm.reset();
+
+      } catch (error) {
+        console.error('Error:', error);
+        showMessage('error', 'Có lỗi xảy ra. Vui lòng thử lại hoặc liên hệ trực tiếp với chúng tôi.');
+      } finally {
+        // Re-enable submit button
+        submitBtn.disabled = false;
+        submitBtn.querySelector('.btn-text').textContent = 'Gửi Xác Nhận';
+      }
+    });
+
+    function showMessage(type, text) {
+      formMessage.className = `form-message ${type}`;
+      formMessage.textContent = text;
+      formMessage.style.display = 'block';
+
+      // Auto-hide success message after 5 seconds
+      if (type === 'success') {
+        setTimeout(() => {
+          formMessage.style.display = 'none';
+        }, 5000);
+      }
+    }
 
     // Gallery slider
     let currentSlide = 0;
@@ -1797,15 +2419,109 @@
       const scrolled = window.pageYOffset;
       const heroImage = document.querySelector('.hero-image');
       const heroContent = document.querySelector('.hero-content');
-      
+
       if (heroImage && scrolled < window.innerHeight) {
         heroImage.style.transform = `scale(${1 + scrolled * 0.0002}) translateY(${scrolled * 0.5}px)`;
       }
-      
+
       if (heroContent && scrolled < window.innerHeight) {
         heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
         heroContent.style.opacity = Math.max(0, 1 - scrolled * 0.002);
       }
+    });
+
+    // Music Button Functionality
+    const musicButton = document.getElementById('musicButton');
+    const backgroundMusic = document.getElementById('backgroundMusic');
+    const musicIcon = document.getElementById('musicIcon');
+    let isPlaying = false;
+
+    // Create ripple effect
+    function createRipple(event) {
+      const button = event.currentTarget;
+      const ripple = document.createElement('span');
+      ripple.classList.add('ripple');
+
+      const existingRipple = button.querySelector('.ripple');
+      if (existingRipple) {
+        existingRipple.remove();
+      }
+
+      button.appendChild(ripple);
+
+      setTimeout(() => {
+        ripple.remove();
+      }, 600);
+    }
+
+    // Toggle music play/pause
+    function toggleMusic() {
+      if (isPlaying) {
+        backgroundMusic.pause();
+        musicButton.classList.remove('playing');
+        musicButton.classList.add('paused');
+        musicIcon.classList.remove('fa-music');
+        musicIcon.classList.add('fa-pause');
+        isPlaying = false;
+      } else {
+        backgroundMusic.play().catch(error => {
+          console.log('Audio playback failed:', error);
+        });
+        musicButton.classList.remove('paused');
+        musicButton.classList.add('playing');
+        musicIcon.classList.remove('fa-pause');
+        musicIcon.classList.add('fa-music');
+        isPlaying = true;
+      }
+    }
+
+    // Event listeners for music button
+    musicButton.addEventListener('click', function(event) {
+      createRipple(event);
+      toggleMusic();
+    });
+
+    // Auto-play music when page loads (with user interaction fallback)
+    window.addEventListener('load', function() {
+      // Attempt autoplay after a short delay
+      setTimeout(() => {
+        backgroundMusic.play().then(() => {
+          musicButton.classList.add('playing');
+          isPlaying = true;
+        }).catch(() => {
+          // Autoplay blocked - user will need to click button
+          musicButton.classList.add('paused');
+        });
+      }, 2000);
+    });
+
+    // Handle music end (for non-looping tracks)
+    backgroundMusic.addEventListener('ended', function() {
+      musicButton.classList.remove('playing');
+      musicButton.classList.add('paused');
+      musicIcon.classList.remove('fa-music');
+      musicIcon.classList.add('fa-pause');
+      isPlaying = false;
+    });
+
+    // Scroll to Top Button Functionality
+    const scrollToTopButton = document.getElementById('scrollToTop');
+
+    // Show/hide scroll to top button based on scroll position
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollToTopButton.classList.add('visible');
+      } else {
+        scrollToTopButton.classList.remove('visible');
+      }
+    });
+
+    // Scroll to top when button is clicked
+    scrollToTopButton.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     });
   </script>
 </body>
