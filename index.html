@@ -1115,8 +1115,22 @@
       }
     }
 
+    .music-button-elegant.paused {
+      animation: gentleBounce 2s ease-in-out infinite;
+    }
+
     .music-button-elegant.paused i {
       opacity: 0.7;
+    }
+
+    /* Gentle bounce animation to attract attention when paused */
+    @keyframes gentleBounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
     }
 
     /* Ripple effect on click */
@@ -1685,7 +1699,7 @@
   <!-- Elegant Hero Section -->
   <header class="elegant-hero">
     <div class="hero-background">
-      <img src="./images/lt-header.jpeg" alt="Wedding Hero" class="hero-image" loading="eager">
+      <img src="./images/TA_00529.jpg" alt="Wedding Hero" class="hero-image" loading="eager">
     </div>
     <div class="hero-overlay"></div>
     <div class="elegant-pattern"></div>
@@ -1745,13 +1759,13 @@
           <div class="card-body-vietnamese">
             <div class="family-section">
               <p class="family-title">NHÀ TRAI</p>
-              <p class="family-name">Ông: [Tên cha chú rể]</p>
-              <p class="family-name">Bà: [Tên mẹ chú rể]</p>
+              <p class="family-name">Ông: Phạm Văn Vũ</p>
+              <p class="family-name">Bà: Nguyễn Thị Hồng Thu</p>
             </div>
 
             <div class="invitation-text">
               <p>Trân trọng kính mời</p>
-              <p class="guest-name">[Quý khách]</p>
+              <p class="guest-name">Quý khách</p>
               <p>đến dự buổi tiệc chung vui</p>
               <p>cùng gia đình chúng tôi</p>
             </div>
@@ -1810,13 +1824,13 @@
           <div class="card-body-vietnamese">
             <div class="family-section">
               <p class="family-title">NHÀ GÁI</p>
-              <p class="family-name">Ông: [Tên cha cô dâu]</p>
-              <p class="family-name">Bà: [Tên mẹ cô dâu]</p>
+              <p class="family-name">Ông: Đặng Khánh Bường</p>
+              <p class="family-name">Bà: Nguyễn Thị Minh</p>
             </div>
 
             <div class="invitation-text">
               <p>Trân trọng kính mời</p>
-              <p class="guest-name">[Quý khách]</p>
+              <p class="guest-name">Quý khách</p>
               <p>đến dự buổi lễ vu quy</p>
               <p>cùng gia đình chúng tôi</p>
             </div>
@@ -1842,7 +1856,7 @@
               </div>
               <div class="detail-line">
                 <i class="fas fa-clock"></i>
-                <span>Thời gian: 09:00 giờ</span>
+                <span>Thời gian: 11:00 giờ</span>
               </div>
               <div class="detail-line">
                 <i class="fas fa-map-marker-alt"></i>
@@ -1874,7 +1888,7 @@
 
       <div class="couple-elegant fade-in-elegant">
         <div class="couple-image-container">
-          <img src="./images/ART07472.JPG" alt="Hoàng Phúc và Ngọc Ngân" class="couple-image" loading="lazy">
+          <img src="./images/TA_01570.jpg" alt="Hoàng Phúc và Ngọc Ngân" class="couple-image" loading="lazy">
         </div>
 
         <div class="couple-story">
@@ -1882,12 +1896,12 @@
           <p class="couple-description">
             Câu chuyện tình yêu của chúng tôi bắt đầu như một lời thì thầm nhẹ nhàng
             rồi lớn dần thành một bản giao hưởng tuyệt đẹp.
-            Qua những mùa cười đùa và những giấc mơ được chia sẻ dưới bầu trời đầy sao,
+            Qua những nụ cười đùa và những giấc mơ được chia sẻ dưới bầu trời đầy sao,
             chúng tôi khám phá ra rằng tình yêu đích thực không chỉ là tìm được người hoàn hảo,
             mà là nhìn thấy một người không hoàn hảo một cách trọn vẹn.
             <br><br>
             Chúng tôi xin trân trọng kính mời quý khách đến chung vui trong ngày trọng đại này,
-            khi chúng tôi hứa sẽ yêu thương, tôn trọng và trân trọng nhau suốt những ngày tháng còn lại của cuộc đời.
+            chúng tôi hứa sẽ yêu thương, tôn trọng và trân trọng nhau suốt những ngày tháng còn lại của cuộc đời.
           </p>
         </div>
       </div>
@@ -1908,7 +1922,7 @@
             <div class="event-icon-elegant">
               <i class="fas fa-church"></i>
             </div>
-            <h3 class="event-title">Lễ Cưới Tại Nhà Thờ</h3>
+            <h3 class="event-title">Thánh Lễ Tại Nhà Thờ</h3>
             <p class="event-date-time">3:00 Chiều • Ngày 7 Tháng 11, 2025</p>
           </div>
           <div class="event-body">
@@ -1942,11 +1956,11 @@
             </div>
             <div class="event-detail">
               <i class="fas fa-utensils"></i>
-              <span>Tiệc Tối, Khiêu Vũ & Ăn Mừng</span>
+              <span>Tiệc Tối, Nâng Ly & Chúc Mừng</span>
             </div>
             <p class="event-description">
               Tiếp tục ăn mừng cùng chúng tôi tại Diamond Place với một buổi tối
-              đầy ắp bữa tiệc thịnh soạn, khiêu vũ và niềm vui khi bắt đầu hành trình mới.
+              đầy ắp bữa tiệc thịnh soạn và niềm vui khi bắt đầu hành trình mới.
             </p>
           </div>
         </div>
@@ -2029,10 +2043,9 @@
         <div class="timeline-item fade-in-elegant">
           <div class="timeline-content">
             <div class="timeline-date">Tháng 2, 2023</div>
-            <h3 class="timeline-title">Buổi Hẹn Đầu Tiên</h3>
+            <h3 class="timeline-title">Lời Tỏ Tình</h3>
             <p class="timeline-description">
-              Ly cà phê trở thành hàng giờ trò chuyện, và chúng tôi biết mình đã tìm thấy
-              điều gì đó đặc biệt. Khởi đầu của câu chuyện tình yêu tuyệt vời.
+              Sau hành trình dài của duyên phận, chúng tôi đã tìm thấy nhau, trao cho nhau cơ hội, và cùng nhau bắt đầu viết nên chương mới - chương của hạnh phúc và yêu thương.
             </p>
             <img src="./images/start.jpeg" alt="Buổi hẹn đầu tiên" class="timeline-image" loading="lazy">
           </div>
@@ -2092,48 +2105,7 @@
       <div class="gallery-frame fade-in-elegant">
         <div class="gallery-slider">
           <div class="gallery-track" id="galleryTrack">
-            <div class="gallery-slide">
-              <img src="./images/ART07472.JPG" alt="Khoảnh khắc đẹp 1" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-caption">Khoảnh Khắc Hoàn Hảo</div>
-                <div class="gallery-text">Đóng băng thời gian, mãi mãi trong trái tim</div>
-              </div>
-            </div>
-            <div class="gallery-slide">
-              <img src="./images/ART08079.JPG" alt="Khoảnh khắc đẹp 2" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-caption">Niềm Vui Thuần Khiết</div>
-                <div class="gallery-text">Hạnh phúc tỏa sáng từ bên trong</div>
-              </div>
-            </div>
-            <div class="gallery-slide">
-              <img src="./images/ART07880.JPG" alt="Khoảnh khắc đẹp 3" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-caption">Tình Yêu Vĩnh Cửu</div>
-                <div class="gallery-text">Một tình yêu sẽ tồn tại mãi mãi</div>
-              </div>
-            </div>
-            <div class="gallery-slide">
-              <img src="./images/ART07528.JPG" alt="Khoảnh khắc đẹp 4" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-caption">Bên Nhau</div>
-                <div class="gallery-text">Vai kề vai, tim đối tim</div>
-              </div>
-            </div>
-            <div class="gallery-slide">
-              <img src="./images/ART08009.JPG" alt="Khoảnh khắc đẹp 5" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-caption">Vô Tận</div>
-                <div class="gallery-text">Khoảnh khắc đóng băng trong vĩnh hằng</div>
-              </div>
-            </div>
-            <div class="gallery-slide">
-              <img src="./images/ART07164.JPG" alt="Khoảnh khắc đẹp 6" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-caption">Hạnh Phúc</div>
-                <div class="gallery-text">Niềm hạnh phúc thuần khiết được chia sẻ</div>
-              </div>
-            </div>
+            <!-- Gallery images will be loaded dynamically by JavaScript -->
           </div>
           
           <button class="gallery-nav gallery-prev" onclick="changeSlide(-1)">
@@ -2259,8 +2231,52 @@
   </footer>
 
   <script>
+    // ==================== GALLERY CONFIGURATION ====================
+    // TO ADD MORE IMAGES: Just add the filename to this array!
+    // Place your images in the 'gallery/' folder
+    const GALLERY_IMAGES = [
+      'ART07164.JPG',
+      'ART07472.JPG',
+      'ART07528.JPG',
+      'ART07880.JPG',
+      'ART08009.JPG',
+      'ART08079.JPG',
+      'TA_00063.jpg',
+      'TA_00103.jpg',
+      'TA_00201.jpg',
+      'TA_00237.jpg',
+      'TA_00281.jpg',
+      'TA_00300.jpg',
+      'TA_00339.jpg',
+      'TA_00409.jpg',
+    ];
+
+    // Load gallery images dynamically
+    function loadGalleryImages() {
+      const galleryTrack = document.getElementById('galleryTrack');
+      galleryTrack.innerHTML = ''; // Clear existing content
+
+      // Create gallery slides
+      GALLERY_IMAGES.forEach((imageName, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'gallery-slide';
+        slide.innerHTML = `
+          <img src="./gallery/${imageName}" alt="Khoảnh khắc đẹp ${index + 1}" loading="lazy">
+        `;
+        galleryTrack.appendChild(slide);
+      });
+
+      // Initialize gallery slider after images are loaded
+      if (GALLERY_IMAGES.length > 0) {
+        initGallerySlider();
+      }
+    }
+
     // Loading screen
     window.addEventListener('load', function() {
+      // Load gallery images first
+      loadGalleryImages();
+
       setTimeout(() => {
         const loading = document.getElementById('loading');
         loading.classList.add('hidden');
@@ -2294,7 +2310,7 @@
 
     // ==================== RSVP Form Submission ====================
     // IMPORTANT: Replace with your Google Apps Script Web App URL
-    const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_SCRIPT_URL_HERE';
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx6gF6bfUo74hdbv4CaOXBcRkNWA0dmSgGoOwYa_8LhG_jDpQSl61OKaCoK4X-st0UbNQ/exec';
 
     const rsvpForm = document.getElementById('rsvpForm');
     const submitBtn = document.getElementById('submitBtn');
@@ -2363,23 +2379,35 @@
 
     // Gallery slider
     let currentSlide = 0;
-    const galleryTrack = document.getElementById('galleryTrack');
-    const slides = galleryTrack.querySelectorAll('.gallery-slide');
-    const totalSlides = slides.length;
+    let totalSlides = 0;
+
+    function initGallerySlider() {
+      const galleryTrack = document.getElementById('galleryTrack');
+      const slides = galleryTrack.querySelectorAll('.gallery-slide');
+      totalSlides = slides.length;
+    }
 
     function showSlide(index) {
+      const galleryTrack = document.getElementById('galleryTrack');
       galleryTrack.style.transform = `translateX(-${index * 100}%)`;
     }
 
     function changeSlide(direction) {
+      if (totalSlides === 0) return; // No slides yet
       currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
       showSlide(currentSlide);
     }
 
+    // Gallery slider will be initialized by loadGalleryImages()
     // Auto-play gallery
-    setInterval(() => {
-      changeSlide(1);
-    }, 5000);
+    let galleryAutoPlay;
+    window.addEventListener('load', function() {
+      setTimeout(() => {
+        galleryAutoPlay = setInterval(() => {
+          changeSlide(1);
+        }, 5000);
+      }, 100);
+    });
 
     // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -2482,18 +2510,61 @@
     });
 
     // Auto-play music when page loads (with user interaction fallback)
+    let autoPlayAttempted = false;
+
+    function attemptAutoPlay() {
+      if (autoPlayAttempted) return;
+      autoPlayAttempted = true;
+
+      backgroundMusic.play().then(() => {
+        musicButton.classList.add('playing');
+        musicIcon.classList.remove('fa-pause');
+        musicIcon.classList.add('fa-music');
+        isPlaying = true;
+        console.log('Auto-play successful!');
+      }).catch(() => {
+        // Autoplay blocked - show paused state to encourage user to click
+        musicButton.classList.add('paused');
+        console.log('Auto-play blocked by browser. User needs to interact first.');
+      });
+    }
+
+    // Try auto-play on page load
     window.addEventListener('load', function() {
-      // Attempt autoplay after a short delay
       setTimeout(() => {
-        backgroundMusic.play().then(() => {
-          musicButton.classList.add('playing');
-          isPlaying = true;
-        }).catch(() => {
-          // Autoplay blocked - user will need to click button
-          musicButton.classList.add('paused');
-        });
-      }, 2000);
+        attemptAutoPlay();
+      }, 1500);
     });
+
+    // Also try auto-play on first user interaction (click, scroll, touch)
+    const enableAutoPlayOnInteraction = () => {
+      if (!isPlaying && !autoPlayAttempted) {
+        console.log('User interaction detected - attempting auto-play...');
+        attemptAutoPlay();
+      }
+      // Remove all listeners after first attempt
+      document.removeEventListener('click', enableAutoPlayOnInteraction);
+      document.removeEventListener('touchstart', enableAutoPlayOnInteraction);
+      document.removeEventListener('keydown', enableAutoPlayOnInteraction);
+      window.removeEventListener('scroll', enableAutoPlayOnInteraction);
+      document.removeEventListener('mousemove', enableAutoPlayOnInteraction);
+    };
+
+    // Register multiple interaction types for maximum compatibility
+    document.addEventListener('click', enableAutoPlayOnInteraction, { once: true });
+    document.addEventListener('touchstart', enableAutoPlayOnInteraction, { once: true });
+    document.addEventListener('keydown', enableAutoPlayOnInteraction, { once: true });
+    window.addEventListener('scroll', enableAutoPlayOnInteraction, { once: true, passive: true });
+
+    // Also try on mouse movement (very subtle interaction)
+    let mouseMoveTimeout;
+    const enableOnMouseMove = () => {
+      clearTimeout(mouseMoveTimeout);
+      mouseMoveTimeout = setTimeout(() => {
+        enableAutoPlayOnInteraction();
+      }, 500); // Delay to avoid triggering on accidental movements
+    };
+    document.addEventListener('mousemove', enableOnMouseMove, { once: true });
 
     // Handle music end (for non-looping tracks)
     backgroundMusic.addEventListener('ended', function() {
