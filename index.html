@@ -18,7 +18,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
   <!-- Elegant Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Ballet&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
   
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -41,7 +41,10 @@
   <!-- Elegant Hero Section -->
   <header class="elegant-hero">
     <div class="hero-background">
-      <img src="./images/lt-header.jpeg" alt="Wedding Hero" class="hero-image" loading="eager">
+      <picture>
+        <source media="(max-width: 768px)" srcset="./gallery/TA_00103.jpg">
+        <img src="./images/TA_01570.jpg" alt="Wedding Hero" class="hero-image" loading="eager">
+      </picture>
     </div>
     <div class="hero-overlay"></div>
     <div class="elegant-pattern"></div>
@@ -88,7 +91,7 @@
 
       <div class="couple-elegant fade-in-elegant">
         <div class="couple-image-container">
-          <img src="./images/TA_01570.jpg" alt="Hoàng Phúc và Ngọc Ngân" class="couple-image" loading="lazy">
+          <img src="./images/lt-header.jpeg" alt="Hoàng Phúc và Ngọc Ngân" class="couple-image" loading="lazy">
         </div>
 
         <div class="couple-story">
@@ -178,7 +181,7 @@
               Ngày mà chúng tôi đã mơ ước - được bao quanh bởi tình yêu, gia đình và bạn bè
               khi chúng tôi hứa sẽ yêu thương nhau đến mãi mãi.
             </p>
-            <img src="./images/ART07218.JPG" alt="Ngày cưới" class="timeline-image" loading="lazy">
+            <img src="./images/TA_02320.jpg" alt="Ngày cưới" class="timeline-image" loading="lazy">
           </div>
           <div class="timeline-dot"></div>
         </div>
@@ -196,7 +199,7 @@
 
       <div class="events-elegant">
         <div class="event-card-elegant fade-in-elegant">
-          <div class="event-header">
+          <div class="event-header" style="background-image: linear-gradient(135deg, rgba(212, 165, 165, 0.4) 0%, rgba(232, 213, 196, 0.4) 100%), url(./images/TA_01179.jpg);">
             <div class="event-icon-elegant">
               <i class="fas fa-church"></i>
             </div>
@@ -215,7 +218,7 @@
         </div>
 
         <div class="event-card-elegant fade-in-elegant">
-          <div class="event-header">
+          <div class="event-header" style="background-image: linear-gradient(135deg, rgba(212, 165, 165, 0.4) 0%, rgba(232, 213, 196, 0.4) 100%), url(./images/TA_01521.jpg);">
             <div class="event-icon-elegant">
               <i class="fas fa-glass-cheers"></i>
             </div>
@@ -238,7 +241,7 @@
         </div>
 
         <div class="event-card-elegant fade-in-elegant">
-          <div class="event-header">
+          <div class="event-header" style="background-image: linear-gradient(135deg, rgba(212, 165, 165, 0.4) 0%, rgba(232, 213, 196, 0.4) 100%), url(./images/TA_01523.jpg);">
             <div class="event-icon-elegant">
               <i class="fas fa-home"></i>
             </div>
@@ -261,7 +264,7 @@
         </div>
 
         <div class="event-card-elegant fade-in-elegant">
-          <div class="event-header">
+          <div class="event-header" style="background-image: linear-gradient(135deg, rgba(212, 165, 165, 0.4) 0%, rgba(232, 213, 196, 0.4) 100%), url(./images/TA_01625.jpg);">
             <div class="event-icon-elegant">
               <i class="fas fa-home"></i>
             </div>
@@ -286,12 +289,91 @@
     </div>
   </section>
 
+  <!-- Wedding Gift Section -->
+  <section class="elegant-section section-bg-cream" id="gift">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-subtitle">Lời Chúc Mừng</p>
+        <h2 class="section-title ornament">Mừng Cưới</h2>
+      </div>
+
+      <div class="gift-content fade-in-elegant">
+        <p class="gift-message">
+          Sự hiện diện của quý khách là món quà quý giá nhất đối với chúng tôi.<br>
+          Tuy nhiên, nếu quý khách muốn gửi lời chúc mừng,<br>
+          chúng tôi xin trân trọng cảm ơn tấm lòng của quý khách.
+        </p>
+        <button class="gift-button" id="giftButton">
+          <i class="fas fa-gift"></i>
+          <span>Gửi Lời Chúc Mừng</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gift QR Dialog -->
+  <div class="gift-dialog-overlay hidden" id="giftDialog">
+    <div class="gift-dialog-card">
+      <button class="gift-dialog-close" id="giftDialogClose">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <h3 class="gift-dialog-title">Thông Tin Chuyển Khoản</h3>
+      <p class="gift-dialog-subtitle">Quý khách vui lòng quét mã QR để gửi lời chúc mừng</p>
+
+      <div class="gift-qr-container">
+        <div class="gift-qr-card">
+          <div class="gift-qr-header">
+            <i class="fas fa-male"></i>
+            <h4>Chú Rể - Hoàng Phúc</h4>
+          </div>
+          <div class="gift-qr-image">
+            <img src="./images/qr-groom.png" alt="QR Code Chú Rể" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="gift-qr-placeholder" style="display: none;">
+              <i class="fas fa-qrcode"></i>
+              <p>Vui lòng thêm QR code<br>tại images/qr-groom.png</p>
+            </div>
+          </div>
+          <div class="gift-bank-info">
+            <p><strong>Ngân hàng:</strong> Vietcombank</p>
+            <p><strong>Số tài khoản:</strong> 1234567890</p>
+            <p><strong>Chủ tài khoản:</strong> Hoàng Phúc</p>
+          </div>
+        </div>
+
+        <div class="gift-qr-card">
+          <div class="gift-qr-header">
+            <i class="fas fa-female"></i>
+            <h4>Cô Dâu - Ngọc Ngân</h4>
+          </div>
+          <div class="gift-qr-image">
+            <img src="./images/qr-bride.png" alt="QR Code Cô Dâu" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+            <div class="gift-qr-placeholder" style="display: none;">
+              <i class="fas fa-qrcode"></i>
+              <p>Vui lòng thêm QR code<br>tại images/qr-bride.png</p>
+            </div>
+          </div>
+          <div class="gift-bank-info">
+            <p><strong>Ngân hàng:</strong> Vietcombank</p>
+            <p><strong>Số tài khoản:</strong> 0987654321</p>
+            <p><strong>Chủ tài khoản:</strong> Ngọc Ngân</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="gift-dialog-note">
+        <i class="fas fa-heart"></i>
+        Xin chân thành cảm ơn tấm lòng của quý khách!
+      </p>
+    </div>
+  </div>
+
   <!-- Gallery Section -->
   <section class="gallery-elegant" id="gallery">
     <div class="container">
       <div class="section-header">
         <p class="section-subtitle" style="color: var(--dusty-rose);">Khoảnh Khắc Đáng Nhớ</p>
-        <h2 class="section-title" style="color: white;">Thư Viện Ảnh</h2>
+        <h2 class="section-title" style="color: white;">Album Ảnh</h2>
       </div>
 
       <div class="gallery-frame fade-in-elegant">
@@ -307,73 +389,6 @@
             <i class="fas fa-chevron-right"></i>
           </button>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- RSVP Form Section -->
-  <section class="elegant-section section-bg-cream" id="rsvp">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-subtitle">Xác Nhận Tham Dự</p>
-        <h2 class="section-title ornament">RSVP</h2>
-        <p style="color: var(--text-secondary); max-width: 600px; margin: 0 auto; font-size: var(--font-base);">
-          Vui lòng cho chúng tôi biết quý khách có thể tham dự không để chúng tôi chuẩn bị chu đáo hơn.
-        </p>
-      </div>
-
-      <div class="rsvp-form-container fade-in-elegant">
-        <form id="rsvpForm" class="rsvp-form-elegant">
-          <div class="form-row">
-            <div class="form-group">
-              <label for="fullName" class="form-label">Họ và Tên *</label>
-              <input type="text" id="fullName" name="fullName" class="form-input" required placeholder="Nguyễn Văn A">
-            </div>
-
-            <div class="form-group">
-              <label for="phone" class="form-label">Số Điện Thoại *</label>
-              <input type="tel" id="phone" name="phone" class="form-input" required placeholder="0123456789">
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="email" class="form-label">Email</label>
-              <input type="email" id="email" name="email" class="form-input" placeholder="email@example.com">
-            </div>
-
-            <div class="form-group">
-              <label for="guests" class="form-label">Số Lượng Khách *</label>
-              <input type="number" id="guests" name="guests" class="form-input" required min="1" max="10" value="1">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="attendance" class="form-label">Tham Dự Sự Kiện *</label>
-            <select id="attendance" name="attendance" class="form-input" required>
-              <option value="">-- Chọn sự kiện --</option>
-              <option value="church">Lễ Cưới Tại Nhà Thờ (7/11)</option>
-              <option value="reception">Tiệc Cưới (7/11)</option>
-              <option value="vuquy">Lễ Vu Quy (8/11)</option>
-              <option value="thanhhon">Lễ Thành Hôn (8/11)</option>
-              <option value="all">Tất Cả Sự Kiện</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="message" class="form-label">Lời Chúc</label>
-            <textarea id="message" name="message" class="form-textarea" rows="4" placeholder="Gửi lời chúc đến cô dâu chú rể..."></textarea>
-          </div>
-
-          <div class="form-actions">
-            <button type="submit" class="btn-elegant btn-submit" id="submitBtn">
-              <span class="btn-text">Gửi Xác Nhận</span>
-              <i class="fas fa-paper-plane btn-icon"></i>
-            </button>
-          </div>
-
-          <div id="formMessage" class="form-message"></div>
-        </form>
       </div>
     </div>
   </section>
@@ -409,6 +424,30 @@
   <audio id="backgroundMusic" loop>
     <source src="./audio/wedding-music.mp3" type="audio/mpeg">
   </audio>
+
+  <!-- Music Dialog -->
+  <div class="music-dialog-overlay" id="musicDialog">
+    <div class="music-dialog-card">
+      <div class="music-dialog-icon">
+        <i class="fas fa-music"></i>
+      </div>
+      <h3 class="music-dialog-title">Bật Nhạc Nền?</h3>
+      <p class="music-dialog-text">
+        Chúng tôi đã chuẩn bị một bản nhạc nhẹ nhàng để tạo không khí lãng mạn cho ngày đặc biệt.
+        Bạn có muốn bật nhạc nền không?
+      </p>
+      <div class="music-dialog-buttons">
+        <button class="music-dialog-btn music-btn-yes" id="musicDialogYes">
+          <i class="fas fa-volume-up"></i>
+          <span>Có</span>
+        </button>
+        <button class="music-dialog-btn music-btn-no" id="musicDialogNo">
+          <i class="fas fa-volume-mute"></i>
+          <span>Không</span>
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- Elegant Footer -->
   <footer class="footer-elegant">

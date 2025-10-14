@@ -75,75 +75,6 @@ function updateCountdown() {
 setInterval(updateCountdown, 1000);
 updateCountdown();
 
-// ==================== RSVP Form Submission ====================
-// IMPORTANT: Replace with your Google Apps Script Web App URL
-const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx6gF6bfUo74hdbv4CaOXBcRkNWA0dmSgGoOwYa_8LhG_jDpQSl61OKaCoK4X-st0UbNQ/exec';
-
-const rsvpForm = document.getElementById('rsvpForm');
-const submitBtn = document.getElementById('submitBtn');
-const formMessage = document.getElementById('formMessage');
-
-rsvpForm.addEventListener('submit', async function(e) {
-  e.preventDefault();
-
-  // Disable submit button
-  submitBtn.disabled = true;
-  submitBtn.querySelector('.btn-text').textContent = 'Đang gửi...';
-
-  // Get form data
-  const formData = {
-    fullName: document.getElementById('fullName').value,
-    phone: document.getElementById('phone').value,
-    email: document.getElementById('email').value,
-    guests: document.getElementById('guests').value,
-    attendance: document.getElementById('attendance').value,
-    message: document.getElementById('message').value,
-    timestamp: new Date().toISOString()
-  };
-
-  try {
-    // Check if URL is configured
-    if (GOOGLE_SCRIPT_URL === 'YOUR_GOOGLE_SCRIPT_URL_HERE') {
-      throw new Error('Vui lòng cấu hình Google Script URL trong mã nguồn');
-    }
-
-    // Submit to Google Sheets
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors', // Important for Google Apps Script
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData)
-    });
-
-    // With no-cors mode, we assume success if no error is thrown
-    showMessage('success', 'Cảm ơn bạn đã xác nhận tham dự! Chúng tôi rất mong được gặp bạn. 💕');
-    rsvpForm.reset();
-
-  } catch (error) {
-    console.error('Error:', error);
-    showMessage('error', 'Có lỗi xảy ra. Vui lòng thử lại hoặc liên hệ trực tiếp với chúng tôi.');
-  } finally {
-    // Re-enable submit button
-    submitBtn.disabled = false;
-    submitBtn.querySelector('.btn-text').textContent = 'Gửi Xác Nhận';
-  }
-});
-
-function showMessage(type, text) {
-  formMessage.className = `form-message ${type}`;
-  formMessage.textContent = text;
-  formMessage.style.display = 'block';
-
-  // Auto-hide success message after 5 seconds
-  if (type === 'success') {
-    setTimeout(() => {
-      formMessage.style.display = 'none';
-    }, 5000);
-  }
-}
-
 // Gallery slider
 let currentSlide = 0;
 let totalSlides = 0;
@@ -360,4 +291,110 @@ scrollToTopButton.addEventListener('click', () => {
     top: 0,
     behavior: 'smooth'
   });
+});
+
+// ==================== MUSIC DIALOG FUNCTIONALITY ====================
+// Music dialog elements
+const musicDialog = document.getElementById('musicDialog');
+const musicDialogYes = document.getElementById('musicDialogYes');
+const musicDialogNo = document.getElementById('musicDialogNo');
+
+// Check if user has already made a choice
+function checkMusicPreference() {
+  const musicPreference = localStorage.getItem('weddingMusicPreference');
+
+  if (musicPreference === null) {
+    // No preference stored, show dialog after loading screen
+    setTimeout(() => {
+      showMusicDialog();
+    }, 2000); // Show dialog 2 seconds after page load
+  } else if (musicPreference === 'yes') {
+    // User previously chose to play music, attempt autoplay
+    setTimeout(() => {
+      attemptAutoPlay();
+    }, 1500);
+  }
+  // If preference is 'no', do nothing (music stays paused)
+}
+
+// Show music dialog
+function showMusicDialog() {
+  musicDialog.classList.remove('hidden');
+}
+
+// Hide music dialog
+function hideMusicDialog() {
+  musicDialog.classList.add('hidden');
+}
+
+// Handle "Yes" button click
+musicDialogYes.addEventListener('click', () => {
+  // Save preference
+  localStorage.setItem('weddingMusicPreference', 'yes');
+
+  // Hide dialog
+  hideMusicDialog();
+
+  // Play music
+  backgroundMusic.play().then(() => {
+    musicButton.classList.add('playing');
+    musicButton.classList.remove('paused');
+    musicIcon.classList.remove('fa-pause');
+    musicIcon.classList.add('fa-music');
+    isPlaying = true;
+    console.log('Music started from dialog');
+  }).catch(error => {
+    console.log('Failed to play music:', error);
+    musicButton.classList.add('paused');
+  });
+});
+
+// Handle "No" button click
+musicDialogNo.addEventListener('click', () => {
+  // Save preference
+  localStorage.setItem('weddingMusicPreference', 'no');
+
+  // Hide dialog
+  hideMusicDialog();
+
+  // Ensure music stays paused
+  backgroundMusic.pause();
+  musicButton.classList.add('paused');
+  musicButton.classList.remove('playing');
+  musicIcon.classList.remove('fa-music');
+  musicIcon.classList.add('fa-pause');
+  isPlaying = false;
+  console.log('User chose not to play music');
+});
+
+// Check music preference when page loads
+window.addEventListener('load', function() {
+  setTimeout(() => {
+    checkMusicPreference();
+  }, 1000);
+});
+
+// ==================== GIFT DIALOG FUNCTIONALITY ====================
+const giftButton = document.getElementById('giftButton');
+const giftDialog = document.getElementById('giftDialog');
+const giftDialogClose = document.getElementById('giftDialogClose');
+
+// Open gift dialog
+giftButton.addEventListener('click', () => {
+  giftDialog.classList.remove('hidden');
+  document.body.style.overflow = 'hidden'; // Prevent background scrolling
+});
+
+// Close gift dialog - close button
+giftDialogClose.addEventListener('click', () => {
+  giftDialog.classList.add('hidden');
+  document.body.style.overflow = ''; // Restore scrolling
+});
+
+// Close gift dialog - overlay click
+giftDialog.addEventListener('click', (e) => {
+  if (e.target === giftDialog) {
+    giftDialog.classList.add('hidden');
+    document.body.style.overflow = ''; // Restore scrolling
+  }
 });
