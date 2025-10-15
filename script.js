@@ -2,12 +2,12 @@
 // TO ADD MORE IMAGES: Just add the filename to this array!
 // Place your images in the 'gallery/' folder
 const GALLERY_IMAGES = [
-  'ART07164.JPG',
-  'ART07472.JPG',
-  'ART07528.JPG',
-  'ART07880.JPG',
-  'ART08009.JPG',
-  'ART08079.JPG',
+  'ART07251.jpg',
+  'ART07329.jpg',
+  'ART07746.jpg',
+  'ART07931.jpg',
+  'ART08065.jpg',
+  'ART08079.jpg',
   'TA_00063.jpg',
   'TA_00103.jpg',
   'TA_00201.jpg',
@@ -16,6 +16,7 @@ const GALLERY_IMAGES = [
   'TA_00300.jpg',
   'TA_00339.jpg',
   'TA_00409.jpg',
+  'TA_00498.jpg',
 ];
 
 // Load gallery images dynamically
@@ -378,6 +379,9 @@ window.addEventListener('load', function() {
 const giftButton = document.getElementById('giftButton');
 const giftDialog = document.getElementById('giftDialog');
 const giftDialogClose = document.getElementById('giftDialogClose');
+const downloadQRBtn = document.getElementById('downloadQRBtn');
+const copySTKBtn = document.getElementById('copySTKBtn');
+const qrImage = document.getElementById('qrImage');
 
 // Open gift dialog
 giftButton.addEventListener('click', () => {
@@ -396,5 +400,93 @@ giftDialog.addEventListener('click', (e) => {
   if (e.target === giftDialog) {
     giftDialog.classList.add('hidden');
     document.body.style.overflow = ''; // Restore scrolling
+  }
+});
+
+// Download QR Code functionality
+downloadQRBtn.addEventListener('click', async () => {
+  try {
+    // Get the QR image
+    const imgSrc = qrImage.src;
+
+    // Fetch the image as blob
+    const response = await fetch(imgSrc);
+    const blob = await response.blob();
+
+    // Create download link
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'QR-Chuyen-Khoan.png';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    window.URL.revokeObjectURL(url);
+
+    // Visual feedback
+    const originalHTML = downloadQRBtn.innerHTML;
+    downloadQRBtn.innerHTML = '<i class="fas fa-check"></i><span>Đã Tải!</span>';
+    downloadQRBtn.style.background = 'var(--sage-green)';
+    downloadQRBtn.style.color = 'white';
+
+    setTimeout(() => {
+      downloadQRBtn.innerHTML = originalHTML;
+      downloadQRBtn.style.background = '';
+      downloadQRBtn.style.color = '';
+    }, 2000);
+  } catch (error) {
+    console.error('Error downloading QR code:', error);
+
+    // Fallback: open image in new tab
+    window.open(qrImage.src, '_blank');
+  }
+});
+
+// Copy bank account number functionality
+copySTKBtn.addEventListener('click', async () => {
+  const accountNumber = copySTKBtn.getAttribute('data-account');
+
+  try {
+    // Modern clipboard API
+    await navigator.clipboard.writeText(accountNumber);
+
+    // Visual feedback
+    const originalHTML = copySTKBtn.innerHTML;
+    copySTKBtn.classList.add('copied');
+    copySTKBtn.innerHTML = '<i class="fas fa-check"></i><span>Đã Sao Chép!</span>';
+
+    setTimeout(() => {
+      copySTKBtn.classList.remove('copied');
+      copySTKBtn.innerHTML = originalHTML;
+    }, 2000);
+  } catch (error) {
+    console.error('Error copying to clipboard:', error);
+
+    // Fallback for older browsers
+    const textArea = document.createElement('textarea');
+    textArea.value = accountNumber;
+    textArea.style.position = 'fixed';
+    textArea.style.left = '-999999px';
+    document.body.appendChild(textArea);
+    textArea.select();
+
+    try {
+      document.execCommand('copy');
+
+      // Visual feedback
+      const originalHTML = copySTKBtn.innerHTML;
+      copySTKBtn.classList.add('copied');
+      copySTKBtn.innerHTML = '<i class="fas fa-check"></i><span>Đã Sao Chép!</span>';
+
+      setTimeout(() => {
+        copySTKBtn.classList.remove('copied');
+        copySTKBtn.innerHTML = originalHTML;
+      }, 2000);
+    } catch (err) {
+      console.error('Fallback copy failed:', err);
+      alert('Không thể sao chép. Vui lòng sao chép thủ công: ' + accountNumber);
+    }
+
+    document.body.removeChild(textArea);
   }
 });

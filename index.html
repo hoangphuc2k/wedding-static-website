@@ -231,7 +231,7 @@
             </div>
             <div class="event-detail">
               <i class="fas fa-map-marker-alt"></i>
-              <span>Diamond Place - Hồ Văn Huê</span>
+              <span>Diamond Place - Ruby 2</span>
             </div>
             <a href="https://maps.google.com/?q=Diamond Place Hồ Văn Huê" target="_blank" rel="noopener noreferrer" class="event-map-btn">
               <i class="fas fa-map-marked-alt"></i>
@@ -250,15 +250,11 @@
           <div class="event-body">
             <div class="event-detail">
               <i class="fas fa-calendar-alt"></i>
-              <span>9:00 Sáng • Ngày 8 Tháng 11, 2025</span>
+              <span>8:00 Sáng • Ngày 8 Tháng 11, 2025</span>
             </div>
             <div class="event-detail">
               <i class="fas fa-map-marker-alt"></i>
               <span>Tư Gia Nhà Gái</span>
-            </div>
-            <div class="event-detail">
-              <i class="fas fa-heart"></i>
-              <span>Lễ Dâng Trà ruyền Thống</span>
             </div>
           </div>
         </div>
@@ -279,10 +275,6 @@
               <i class="fas fa-map-marker-alt"></i>
               <span>Tư Gia Nhà Trai</span>
             </div>
-            <div class="event-detail">
-              <i class="fas fa-leaf"></i>
-              <span>Lễ Dâng Trà Truyền Thống</span>
-            </div>
           </div>
         </div>
       </div>
@@ -300,8 +292,6 @@
       <div class="gift-content fade-in-elegant">
         <p class="gift-message">
           Sự hiện diện của quý khách là món quà quý giá nhất đối với chúng tôi.<br>
-          Tuy nhiên, nếu quý khách muốn gửi lời chúc mừng,<br>
-          chúng tôi xin trân trọng cảm ơn tấm lòng của quý khách.
         </p>
         <button class="gift-button" id="giftButton">
           <i class="fas fa-gift"></i>
@@ -321,43 +311,24 @@
       <h3 class="gift-dialog-title">Thông Tin Chuyển Khoản</h3>
       <p class="gift-dialog-subtitle">Quý khách vui lòng quét mã QR để gửi lời chúc mừng</p>
 
-      <div class="gift-qr-container">
-        <div class="gift-qr-card">
-          <div class="gift-qr-header">
-            <i class="fas fa-male"></i>
-            <h4>Chú Rể - Hoàng Phúc</h4>
-          </div>
-          <div class="gift-qr-image">
-            <img src="./images/qr-groom.png" alt="QR Code Chú Rể" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-            <div class="gift-qr-placeholder" style="display: none;">
-              <i class="fas fa-qrcode"></i>
-              <p>Vui lòng thêm QR code<br>tại images/qr-groom.png</p>
-            </div>
-          </div>
-          <div class="gift-bank-info">
-            <p><strong>Ngân hàng:</strong> Vietcombank</p>
-            <p><strong>Số tài khoản:</strong> 1234567890</p>
-            <p><strong>Chủ tài khoản:</strong> Hoàng Phúc</p>
+      <div class="gift-qr-single-container">
+        <div class="gift-qr-image-wrapper">
+          <img src="./images/qr-wedding.png" alt="QR Code Chuyển Khoản" id="qrImage" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
+          <div class="gift-qr-placeholder" style="display: none;">
+            <i class="fas fa-qrcode"></i>
+            <p>Vui lòng thêm QR code<br>tại images/qr-wedding.png</p>
           </div>
         </div>
 
-        <div class="gift-qr-card">
-          <div class="gift-qr-header">
-            <i class="fas fa-female"></i>
-            <h4>Cô Dâu - Ngọc Ngân</h4>
-          </div>
-          <div class="gift-qr-image">
-            <img src="./images/qr-bride.png" alt="QR Code Cô Dâu" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-            <div class="gift-qr-placeholder" style="display: none;">
-              <i class="fas fa-qrcode"></i>
-              <p>Vui lòng thêm QR code<br>tại images/qr-bride.png</p>
-            </div>
-          </div>
-          <div class="gift-bank-info">
-            <p><strong>Ngân hàng:</strong> Vietcombank</p>
-            <p><strong>Số tài khoản:</strong> 0987654321</p>
-            <p><strong>Chủ tài khoản:</strong> Ngọc Ngân</p>
-          </div>
+        <div class="gift-action-buttons">
+          <button class="gift-action-btn gift-btn-download" id="downloadQRBtn">
+            <i class="fas fa-download"></i>
+            <span>Tải QR Code</span>
+          </button>
+          <button class="gift-action-btn gift-btn-copy" id="copySTKBtn" data-account="23461837">
+            <i class="fas fa-copy"></i>
+            <span>Sao Chép STK</span>
+          </button>
         </div>
       </div>
 
@@ -373,7 +344,7 @@
     <div class="container">
       <div class="section-header">
         <p class="section-subtitle" style="color: var(--dusty-rose);">Khoảnh Khắc Đáng Nhớ</p>
-        <h2 class="section-title" style="color: white;">Album Ảnh</h2>
+        <h2 class="section-title" style="color: white;">Album ảnh cưới</h2>
       </div>
 
       <div class="gallery-frame fade-in-elegant">
