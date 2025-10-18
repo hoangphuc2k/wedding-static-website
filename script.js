@@ -13,7 +13,6 @@ const GALLERY_IMAGES = [
   'ART07746.jpg',
   'ART07931.jpg',
   'ART08065.jpg',
-  'ART08079.jpg',
   'TA_00063.jpg',
   'TA_00103.jpg',
   'TA_00201.jpg',
