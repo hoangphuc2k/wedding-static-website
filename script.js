@@ -1,4 +1,10 @@
-// ==================== GALLERY CONFIGURATION ====================
+// ==================== CONFIGURATION ====================
+// GOOGLE SHEETS INTEGRATION
+// Replace this URL with your Google Apps Script web app URL
+// See GOOGLE_SHEETS_SETUP.md for deployment instructions
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyfZ08jqTLi_VNIIU_Y-6G7fvhBEcSDwbJc6QZRBu7ghTiiynNeS0Kc45YSDws2lLUjfw/exec';
+
+// GALLERY CONFIGURATION
 // TO ADD MORE IMAGES: Just add the filename to this array!
 // Place your images in the 'gallery/' folder
 const GALLERY_IMAGES = [
@@ -383,25 +389,197 @@ const downloadQRBtn = document.getElementById('downloadQRBtn');
 const copySTKBtn = document.getElementById('copySTKBtn');
 const qrImage = document.getElementById('qrImage');
 
-// Open gift dialog
+// Wish form elements
+const wishSection = document.getElementById('wishSection');
+const qrSection = document.getElementById('qrSection');
+const wishForm = document.getElementById('wishForm');
+const wishName = document.getElementById('wishName');
+const wishMessage = document.getElementById('wishMessage');
+
+// Initialize: Ensure wish section is visible and QR section is hidden on page load
+window.addEventListener('DOMContentLoaded', () => {
+  if (wishSection && qrSection) {
+    wishSection.classList.remove('hidden');
+    qrSection.classList.add('hidden');
+  }
+});
+
+// Open gift dialog - always show wish form first
 giftButton.addEventListener('click', () => {
   giftDialog.classList.remove('hidden');
   document.body.style.overflow = 'hidden'; // Prevent background scrolling
+
+  // Reset to wish form view
+  wishSection.classList.remove('hidden');
+  qrSection.classList.add('hidden');
+
+  // Clear form
+  wishForm.reset();
 });
 
 // Close gift dialog - close button
 giftDialogClose.addEventListener('click', () => {
-  giftDialog.classList.add('hidden');
-  document.body.style.overflow = ''; // Restore scrolling
+  closeGiftDialog();
 });
 
 // Close gift dialog - overlay click
 giftDialog.addEventListener('click', (e) => {
   if (e.target === giftDialog) {
-    giftDialog.classList.add('hidden');
-    document.body.style.overflow = ''; // Restore scrolling
+    closeGiftDialog();
   }
 });
+
+// Close dialog function
+function closeGiftDialog() {
+  giftDialog.classList.add('hidden');
+  document.body.style.overflow = ''; // Restore scrolling
+
+  // Reset to wish form after a delay
+  setTimeout(() => {
+    wishSection.classList.remove('hidden');
+    qrSection.classList.add('hidden');
+    wishForm.reset();
+  }, 300);
+}
+
+// Handle wish form submission
+wishForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  // Get form values
+  const name = wishName.value.trim();
+  const message = wishMessage.value.trim();
+
+  // Validate
+  if (!name || !message) {
+    showStatusMessage('Vui lòng điền đầy đủ thông tin', 'error');
+    return;
+  }
+
+  // Create wish object
+  const wish = {
+    name: name,
+    message: message,
+    timestamp: new Date().toISOString()
+  };
+
+  // Show loading state
+  const submitBtn = wishForm.querySelector('.gift-submit-btn');
+  const originalBtnHTML = submitBtn.innerHTML;
+  submitBtn.classList.add('loading');
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<span class="spinner"></span><span>Đang gửi...</span>';
+
+  // Remove any existing status messages
+  const existingStatus = wishForm.querySelector('.gift-status-message');
+  if (existingStatus) {
+    existingStatus.remove();
+  }
+
+  try {
+    // Check if Google Script URL is configured
+    const isGoogleSheetsConfigured = GOOGLE_SCRIPT_URL &&
+                                      GOOGLE_SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+    if (isGoogleSheetsConfigured) {
+      // Send to Google Sheets
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: 'POST',
+        mode: 'no-cors', // Required for Google Apps Script
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(wish)
+      });
+
+      // Note: With no-cors mode, we can't read the response
+      // But we can assume success if no error was thrown
+      console.log('Wish sent to Google Sheets successfully');
+
+      // Store in localStorage as backup
+      saveToLocalStorage(wish);
+
+      // Show success and transition to QR section
+      transitionToQRSection();
+
+    } else {
+      // Google Sheets not configured, use localStorage only
+      console.warn('Google Sheets not configured. Saving to localStorage only.');
+      saveToLocalStorage(wish);
+
+      // Show success and transition to QR section
+      transitionToQRSection();
+    }
+
+  } catch (error) {
+    console.error('Error submitting wish:', error);
+
+    // Fallback to localStorage
+    saveToLocalStorage(wish);
+
+    // Show warning message but still proceed to QR section
+    showStatusMessage('Lời chúc đã được lưu tạm thời', 'success');
+
+    // Still transition to QR section after short delay
+    setTimeout(() => {
+      transitionToQRSection();
+    }, 1500);
+
+  } finally {
+    // Reset button state
+    submitBtn.classList.remove('loading');
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalBtnHTML;
+  }
+});
+
+// Helper function to save to localStorage
+function saveToLocalStorage(wish) {
+  try {
+    const wishes = JSON.parse(localStorage.getItem('weddingWishes') || '[]');
+    wishes.push(wish);
+    localStorage.setItem('weddingWishes', JSON.stringify(wishes));
+    console.log('Wish saved to localStorage:', wish);
+  } catch (error) {
+    console.error('Error saving to localStorage:', error);
+  }
+}
+
+// Helper function to transition to QR section
+function transitionToQRSection() {
+  // Transition to QR section
+  wishSection.classList.add('hidden');
+
+  // Small delay for smooth transition
+  setTimeout(() => {
+    qrSection.classList.remove('hidden');
+  }, 200);
+}
+
+// Helper function to show status messages
+function showStatusMessage(message, type = 'success') {
+  // Remove existing message
+  const existingMessage = wishForm.querySelector('.gift-status-message');
+  if (existingMessage) {
+    existingMessage.remove();
+  }
+
+  // Create new message
+  const messageDiv = document.createElement('div');
+  messageDiv.className = `gift-status-message ${type}`;
+
+  const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+  messageDiv.innerHTML = `<i class="fas ${icon}"></i><span>${message}</span>`;
+
+  wishForm.appendChild(messageDiv);
+
+  // Auto-remove after 3 seconds
+  setTimeout(() => {
+    if (messageDiv.parentElement) {
+      messageDiv.remove();
+    }
+  }, 3000);
+}
 
 // Download QR Code functionality
 downloadQRBtn.addEventListener('click', async () => {

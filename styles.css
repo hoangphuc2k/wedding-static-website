@@ -84,6 +84,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ==================== Utility Classes ==================== */
+.hidden {
+  display: none !important;
+}
+
 /* ==================== Typography ==================== */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Playfair Display', serif;
@@ -2148,6 +2153,257 @@ h1, h2, h3, h4, h5, h6 {
   animation: heartBeat 2s ease-in-out infinite;
 }
 
+/* ==================== Wish Form Section ==================== */
+.gift-wish-section {
+  animation: fadeInScale 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gift-qr-section {
+  animation: fadeInScale 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.gift-wish-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--space-lg);
+  background: var(--gradient-romantic);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-4xl);
+  color: white;
+  box-shadow: var(--shadow-elegant);
+  animation: wishIconPulse 2s ease-in-out infinite;
+}
+
+@keyframes wishIconPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: var(--shadow-elegant);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-romantic);
+  }
+}
+
+.gift-success-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--space-lg);
+  background: var(--sage-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-4xl);
+  color: white;
+  box-shadow: var(--shadow-elegant);
+  animation: successBounce 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes successBounce {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.gift-wish-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.gift-form-group {
+  margin-bottom: var(--space-xl);
+  text-align: left;
+}
+
+.gift-form-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: 'Montserrat', sans-serif;
+  font-size: var(--font-sm);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--dusty-rose);
+  margin-bottom: var(--space-sm);
+}
+
+.gift-form-label i {
+  font-size: var(--font-base);
+  color: var(--sage-green);
+}
+
+.gift-form-input,
+.gift-form-textarea {
+  width: 100%;
+  padding: var(--space-md);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: var(--font-lg);
+  color: var(--text-primary);
+  background: var(--gradient-soft);
+  border: 2px solid rgba(212, 165, 165, 0.3);
+  border-radius: var(--radius-md);
+  transition: var(--transition-elegant);
+  outline: none;
+}
+
+.gift-form-input:focus,
+.gift-form-textarea:focus {
+  border-color: var(--dusty-rose);
+  box-shadow: 0 0 0 4px rgba(212, 165, 165, 0.1);
+  background: white;
+}
+
+.gift-form-input::placeholder,
+.gift-form-textarea::placeholder {
+  color: var(--text-muted);
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.gift-form-textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+.gift-submit-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  font-family: 'Montserrat', sans-serif;
+  font-size: var(--font-base);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: none;
+  border-radius: var(--radius-full);
+  color: white;
+  background: var(--gradient-romantic);
+  cursor: pointer;
+  transition: var(--transition-elegant);
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-elegant);
+  margin-top: var(--space-lg);
+}
+
+.gift-submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--sage-green) 0%, var(--dusty-rose) 100%);
+  transition: var(--transition-elegant);
+  z-index: -1;
+}
+
+.gift-submit-btn:hover::before {
+  left: 0;
+}
+
+.gift-submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-romantic);
+}
+
+.gift-submit-btn:active {
+  transform: translateY(-1px);
+}
+
+.gift-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.gift-submit-btn i {
+  font-size: var(--font-lg);
+  transition: var(--transition-smooth);
+}
+
+.gift-submit-btn:hover i {
+  transform: translateX(3px);
+}
+
+/* Loading spinner for form submission */
+.gift-submit-btn.loading {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.gift-submit-btn .spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Status message styling */
+.gift-status-message {
+  text-align: center;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  margin-top: var(--space-md);
+  font-family: 'Montserrat', sans-serif;
+  font-size: var(--font-sm);
+  font-weight: 500;
+  animation: fadeInScale 0.3s ease;
+}
+
+.gift-status-message.success {
+  background: rgba(156, 175, 136, 0.1);
+  color: var(--sage-green);
+  border: 1px solid var(--sage-green);
+}
+
+.gift-status-message.error {
+  background: rgba(212, 165, 165, 0.1);
+  color: var(--dusty-rose);
+  border: 1px solid var(--dusty-rose);
+}
+
+.gift-status-message i {
+  margin-right: var(--space-xs);
+}
+
 /* Responsive adjustments for gift dialog */
 @media (max-width: 768px) {
   .gift-dialog-card {
@@ -2156,6 +2412,28 @@ h1, h2, h3, h4, h5, h6 {
 
   .gift-dialog-title {
     font-size: var(--font-2xl);
+  }
+
+  .gift-wish-icon,
+  .gift-success-icon {
+    width: 70px;
+    height: 70px;
+    font-size: var(--font-3xl);
+  }
+
+  .gift-form-input,
+  .gift-form-textarea {
+    font-size: var(--font-base);
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .gift-form-label {
+    font-size: var(--font-xs);
+  }
+
+  .gift-submit-btn {
+    padding: var(--space-md);
+    font-size: var(--font-sm);
   }
 
   .gift-qr-single-container {
